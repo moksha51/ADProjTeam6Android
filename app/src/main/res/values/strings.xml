@@ -14,11 +14,12 @@
     <string name="login">"Login"</string>
     <string name="logout">"Logout"</string>
     <string name="createacct">"Create Account"</string>
-    <string name=" ">" "</string>
-    <string name=" ">" "</string>
-    <string name=" ">" "</string>
-    <string name=" ">" "</string>
-    <string name=" ">" "</string>
-
+    <string name="home">"Home"</string>
+    <string name="leaderboard">"Leaderboard"</string>
+    <string name="map">"Map"</string>
+    <string name="camera">"Camera"</string>
+    <string name="profile">"Profile"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
