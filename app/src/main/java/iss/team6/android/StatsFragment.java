@@ -1,5 +1,6 @@
 package iss.team6.android;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ProgressBar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +17,10 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class StatsFragment extends Fragment {
+
+    Button btn_redeem_glass, btn_redeem_metal, btn_redeem_paper, btn_redeem_plastic;
+    ProgressBar progressBar_glass, progressBar_metal, progressBar_paper, progressBar_plastic;
+    int count_glass, count_metal, count_paper, count_plastic = 0;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +66,36 @@ public class StatsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stats, container, false);
+        View view = inflater.inflate(R.layout.fragment_stats, container, false);
+
+        return view;
     }
+
+    /*protected void setupProgressBar(){
+        int [] progressBars = {
+                R.id.rewards_progress_bar_glass,
+                R.id.rewards_progress_bar_metal,
+                R.id.rewards_progress_bar_paper,
+                R.id.rewards_progress_bar_plastic,
+        };
+
+        for (int i = 0; i<progressBars.length; i++){
+            //ProgressBar progressBar = (View) findViewById(progressBars[i]);
+        }
+        progressBar_glass = (progressBar)findViewById(R.id.rewards_progress_bar_glass);
+        progressBar_glass.setMax(100);
+        if (btn_redeem_glass != null){
+            if (count_glass > 0 && count_glass < 100){
+                progressBar_glass.setProgress(count_glass);
+                btn_redeem_glass.setBackgroundColor(Color.GRAY);
+            } else if (count_glass == 100){
+                btn_redeem_glass.setOnClickListener((View.OnClickListener) this);
+            }
+        }
+
+        progressBar_metal.setMax(100);
+        progressBar_paper.setMax(100);
+        progressBar_plastic.setMax(100);
+    }*/
+
 }

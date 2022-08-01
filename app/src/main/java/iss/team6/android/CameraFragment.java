@@ -4,17 +4,21 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -24,6 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.common.util.concurrent.ListenableFuture;
 
@@ -38,13 +43,16 @@ import java.util.concurrent.Executor;
  */
 public class CameraFragment extends Fragment {
 
+    private static final Object PERMISSION_CODE = 1234;
     Button btnTakePhoto, btnClassifyImage;
-    ImageView imageView;
-    PreviewView previewView;
     int SELECT_PICTURE = 200;
     static final int REQUEST_IMAGE_CAPTURE = 1;
-
-    // Required empty public constructor
+    public static final int MY_PERMISSIONS_REQUEST_CAMERA = 100;
+    public static final String ALLOW_KEY = "ALLOWED";
+    public static final String CAMERA_PREF = "camera_pref";
+    private PreviewView previewView;
+    private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
+    private TextView textView;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -56,6 +64,7 @@ public class CameraFragment extends Fragment {
     private String mParam2;
 
     public CameraFragment() {
+        // Required empty public constructor
     }
 
     /**
@@ -95,8 +104,8 @@ public class CameraFragment extends Fragment {
         btnTakePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivity(takePictureIntent);
+                Intent intent = new Intent("android.media.action,IMAGE_CAPTURE");
+                startActivityForResult(intent,0);
             }
         });
 
@@ -109,7 +118,6 @@ public class CameraFragment extends Fragment {
                 intent.setAction(Intent.ACTION_GET_CONTENT);
             }
         });
-
         return view;
     }
 }
