@@ -14,11 +14,8 @@
     <string name="login">"Login"</string>
     <string name="logout">"Logout"</string>
     <string name="createacct">"Create Account"</string>
-    <string name=" ">" "</string>
-    <string name=" ">" "</string>
-    <string name=" ">" "</string>
-    <string name=" ">" "</string>
-    <string name=" ">" "</string>
+    <string name="facebook_app_id">1215439502357212</string>
+    <string name="facebook_client_token">007bdfe57e3442cac58d6c5e555fc222</string>
 
 
 </resources>
