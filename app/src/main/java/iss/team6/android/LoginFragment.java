@@ -1,4 +1,4 @@
-package iss.workshop.adproj;
+package iss.team6.android;
 
 import androidx.appcompat.app.AppCompatActivity;
 
