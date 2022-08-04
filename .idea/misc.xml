@@ -34,6 +34,12 @@
         <entry key="app/src/main/res/layout/redeem_row.xml" value="0.22" />
         <entry key="app/src/main/res/menu/nav_bar.xml" value="0.30625" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.1" />
+        <entry key="..\:/Users/Nina/AndroidStudioProjects/ADProjTeam6Android/app/src/main/res/drawable/rounded_button.xml" value="0.107" />
+        <entry key="..\:/Users/Nina/AndroidStudioProjects/ADProjTeam6Android/app/src/main/res/layout/activity_home_dashboard_fragment.xml" value="0.16145833333333334" />
+        <entry key="..\:/Users/Nina/AndroidStudioProjects/ADProjTeam6Android/app/src/main/res/layout/activity_login_fragment.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/Nina/AndroidStudioProjects/ADProjTeam6Android/app/src/main/res/layout/activity_userprofile_fragment.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/Nina/AndroidStudioProjects/ADProjTeam6Android/app/src/main/res/layout/fragment_homedashboard.xml" value="0.17447916666666666" />
+        <entry key="..\:/Users/Nina/AndroidStudioProjects/ADProjTeam6Android/app/src/main/res/layout/fragment_login.xml" value="0.1" />
       </map>
     </option>
   </component>
