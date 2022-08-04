@@ -11,7 +11,7 @@
     tools:context=".CameraFragment">
 
 
-    <ImageView
+    <androidx.camera.view.PreviewView
         android:id="@+id/previewView"
         android:layout_width="300dp"
         android:layout_height="300dp"
