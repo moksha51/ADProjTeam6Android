@@ -14,13 +14,13 @@ import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 import androidx.lifecycle.LifecycleOwner;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -44,22 +44,27 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 
 public class CameraActivity extends AppCompatActivity implements ImageAnalysis.Analyzer, View.OnClickListener {
-
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
 
-    PreviewView previewView;
+    private PreviewView previewView;
     private ImageCapture imageCapture;
     private VideoCapture videoCapture;
-    private Button btnTakePhoto;
+    private Button btn_TakePhoto;
+    private Button btn_Trashify;
+    private final static int SELECT_PICTURE = 200;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_camera);
 
         previewView = findViewById(R.id.previewView);
-        btnTakePhoto = findViewById(R.id.btn_camera_take_photo);
-        btnTakePhoto.setOnClickListener(this);
+        btn_TakePhoto = findViewById(R.id.btn_camera_take_photo);
+        btn_Trashify = findViewById(R.id.btn_camera_trashify);
+
+        btn_TakePhoto.setOnClickListener(this);
+        btn_Trashify.setOnClickListener(this);
 
         cameraProviderFuture = ProcessCameraProvider.getInstance(this);
         cameraProviderFuture.addListener(() -> {
@@ -73,7 +78,7 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
 
     }
 
-    Executor getExecutor() {
+    private Executor getExecutor() {
         return ContextCompat.getMainExecutor(this);
     }
 
@@ -92,11 +97,6 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
                 .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
                 .build();
 
-        // Video capture use case
-        videoCapture = new VideoCapture.Builder()
-                .setVideoFrameRate(30)
-                .build();
-
         // Image analysis use case
         ImageAnalysis imageAnalysis = new ImageAnalysis.Builder()
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
@@ -105,7 +105,7 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
         imageAnalysis.setAnalyzer(getExecutor(), CameraActivity.this);
 
         //bind to lifecycle:
-        cameraProvider.bindToLifecycle((LifecycleOwner) this, cameraSelector, preview, imageCapture, videoCapture);
+        cameraProvider.bindToLifecycle((LifecycleOwner) CameraActivity.this, cameraSelector, preview, imageCapture);
     }
 
     @Override
@@ -122,52 +122,9 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
             case R.id.btn_camera_take_photo:
                 capturePhoto();
                 break;
-        }
-    }
-
-    @SuppressLint("RestrictedApi")
-    private void recordVideo() {
-        if (videoCapture != null) {
-
-            long timestamp = System.currentTimeMillis();
-
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, timestamp);
-            contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "video/mp4");
-
-            try {
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
-                videoCapture.startRecording(
-                        new VideoCapture.OutputFileOptions.Builder(
-                                getContentResolver(),
-                                MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
-                                contentValues
-                        ).build(),
-                        getExecutor(),
-                        new VideoCapture.OnVideoSavedCallback() {
-                            @Override
-                            public void onVideoSaved(@NonNull VideoCapture.OutputFileResults outputFileResults) {
-                                Toast.makeText(CameraActivity.this, "Video has been saved successfully.", Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onError(int videoCaptureError, @NonNull String message, @Nullable Throwable cause) {
-                                Toast.makeText(CameraActivity.this, "Error saving video: " + message, Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                );
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            case R.id.btn_camera_trashify:
+                trashify();
+             break;
 
         }
     }
@@ -178,6 +135,7 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
         ContentValues contentValues = new ContentValues();
         contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, timestamp);
         contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg");
+
         imageCapture.takePicture(
                 new ImageCapture.OutputFileOptions.Builder(
                         getContentResolver(),
@@ -197,6 +155,11 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
                     }
                 }
         );
+    }
 
+    private void trashify(){
+        Intent selectImageIntent = new Intent(Intent.ACTION_PICK);
+        selectImageIntent.setType("image/*");
+        startActivityForResult(selectImageIntent,SELECT_PICTURE);
     }
 }

@@ -4,6 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.1" />
+        <entry key="..\:/Users/Nina/AndroidStudioProjects/ADProjTeam6Android/app/src/main/res/drawable/rounded_button.xml" value="0.107" />
+        <entry key="..\:/Users/Nina/AndroidStudioProjects/ADProjTeam6Android/app/src/main/res/layout/activity_home_dashboard_fragment.xml" value="0.16145833333333334" />
+        <entry key="..\:/Users/Nina/AndroidStudioProjects/ADProjTeam6Android/app/src/main/res/layout/activity_login_fragment.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/Nina/AndroidStudioProjects/ADProjTeam6Android/app/src/main/res/layout/activity_userprofile_fragment.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/Nina/AndroidStudioProjects/ADProjTeam6Android/app/src/main/res/layout/fragment_homedashboard.xml" value="0.17447916666666666" />
+        <entry key="..\:/Users/Nina/AndroidStudioProjects/ADProjTeam6Android/app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2485" />
         <entry key="app/src/main/res/drawable/ic_account.xml" value="0.3075" />
         <entry key="app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.3075" />
@@ -19,27 +25,24 @@
         <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.2485" />
         <entry key="app/src/main/res/layout/activity_camera.xml" value="0.3072916666666667" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.3072916666666667" />
+        <entry key="app/src/main/res/layout/activity_home_dashboard_fragment.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/activity_leaderboard.xml" value="0.3072916666666667" />
+        <entry key="app/src/main/res/layout/activity_login_fragment.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2554347826086957" />
         <entry key="app/src/main/res/layout/activity_map.xml" value="0.3072916666666667" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.3072916666666667" />
+        <entry key="app/src/main/res/layout/activity_userprofile_fragment.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/fragment_camera.xml" value="0.2554347826086957" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2554347826086957" />
         <entry key="app/src/main/res/layout/fragment_home2.xml" value="0.2554347826086957" />
         <entry key="app/src/main/res/layout/fragment_leaderboard.xml" value="0.2554347826086957" />
         <entry key="app/src/main/res/layout/fragment_map.xml" value="0.2554347826086957" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_stats.xml" value="0.2554347826086957" />
+        <entry key="app/src/main/res/layout/fragment_stats.xml" value="0.1" />
         <entry key="app/src/main/res/layout/nagivation_buttons.xml" value="0.359375" />
         <entry key="app/src/main/res/layout/redeem_row.xml" value="0.22" />
         <entry key="app/src/main/res/menu/nav_bar.xml" value="0.30625" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.1" />
-        <entry key="..\:/Users/Nina/AndroidStudioProjects/ADProjTeam6Android/app/src/main/res/drawable/rounded_button.xml" value="0.107" />
-        <entry key="..\:/Users/Nina/AndroidStudioProjects/ADProjTeam6Android/app/src/main/res/layout/activity_home_dashboard_fragment.xml" value="0.16145833333333334" />
-        <entry key="..\:/Users/Nina/AndroidStudioProjects/ADProjTeam6Android/app/src/main/res/layout/activity_login_fragment.xml" value="0.17552083333333332" />
-        <entry key="..\:/Users/Nina/AndroidStudioProjects/ADProjTeam6Android/app/src/main/res/layout/activity_userprofile_fragment.xml" value="0.17552083333333332" />
-        <entry key="..\:/Users/Nina/AndroidStudioProjects/ADProjTeam6Android/app/src/main/res/layout/fragment_homedashboard.xml" value="0.17447916666666666" />
-        <entry key="..\:/Users/Nina/AndroidStudioProjects/ADProjTeam6Android/app/src/main/res/layout/fragment_login.xml" value="0.1" />
       </map>
     </option>
   </component>

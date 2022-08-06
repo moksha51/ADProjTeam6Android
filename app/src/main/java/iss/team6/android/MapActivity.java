@@ -20,7 +20,6 @@ public class MapActivity extends AppCompatActivity {
         Intent intent = getIntent();
         mUrl = intent.getStringExtra(MainActivity.EXTERNAL_URL);
 
-        // Initialize webview and launch the url
         mWebView = findViewById(R.id.web_view);
         mWebView.setWebViewClient(new WebViewClient());
         mWebView.loadUrl(mUrl);

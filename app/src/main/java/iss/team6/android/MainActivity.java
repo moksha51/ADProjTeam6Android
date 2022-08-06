@@ -24,15 +24,32 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTERNAL_URL = "externalUrl";
     BottomNavigationView bottomNavigationView;
     View fragmentContainer;
-    WebView webView;
-    private final static String mapUrl = "https://www.nea.gov.sg/our-services/waste-management/3r-programmes-and-resources/recycling-collection-points";
-    private static final String[] CAMERA_PERMISSION = new String[]{Manifest.permission.CAMERA};
-    private static final int CAMERA_REQUEST_CODE = 10;
+    private static final int REQUEST_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CODE);
+        }
+
+        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE);
+        }
+
+        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE);
+        }
+
+        if (checkSelfPermission(Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.INTERNET}, REQUEST_CODE);
+        }
+
+        if (checkSelfPermission(Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_NETWORK_STATE}, REQUEST_CODE);
+        }
 
         bottomNavigationView = findViewById(R.id.navMenu);
         fragmentContainer = findViewById(R.id.fragment_container);
@@ -50,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
                     launchExternalPage(externalUrl);
                     break;
                 case R.id.cameraFragment:
-                    replaceFragment(new CameraFragment());
+                    Intent intent = new Intent(this, CameraActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.statsFragment:
                     replaceFragment(new StatsFragment());
@@ -59,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(new ProfileFragment());
                     break;
             }
-
             return true;
         });
     }

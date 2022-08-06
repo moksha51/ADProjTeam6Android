@@ -5,14 +5,15 @@
     android:id="@+id/bottomNavigationView"
     app:startDestination="@id/homeFragment">
 
-    <fragment
-        android:id="@+id/cameraFragment"
-        android:name="iss.team6.android.CameraFragment"
-        android:label="fragment_camera"
-        tools:layout="@layout/fragment_camera" />
+    <activity
+        android:id="@+id/activity_camera"
+        android:name="iss.team6.android.CameraActivity"
+        android:label="activity_camera"
+        tools:layout="@layout/activity_camera"/>
+
     <fragment
         android:id="@+id/mapFragment"
-        android:name="iss.team6.android.MapFragment"
+        android:name="iss.team6.android.MapActivity"
         android:label="fragment_map"
         tools:layout="@layout/fragment_map" />
     <fragment

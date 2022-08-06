@@ -19,10 +19,10 @@
     <string name="map">"Map"</string>
     <string name="camera">"Camera"</string>
     <string name="profile">"Profile"</string>
-    <string name="glass_count">0</string>
-    <string name="metal_count">0</string>
-    <string name="paper_count">0</string>
-    <string name="plastic_count">0</string>
+    <string name="string_count_glass">0</string>
+    <string name="string_count_metal">0</string>
+    <string name="string_count_paper">0</string>
+    <string name="string_count_plastic">0</string>
     <string name="glass">(Glass)</string>
     <string name="metal">(Metal)</string>
     <string name="paper">(Paper)</string>
