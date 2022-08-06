@@ -14,6 +14,21 @@
     <string name="login">"Login"</string>
     <string name="logout">"Logout"</string>
     <string name="createacct">"Create Account"</string>
+    <string name="home">"Home"</string>
+    <string name="leaderboard">"Leaderboard"</string>
+    <string name="map">"Map"</string>
+    <string name="camera">"Camera"</string>
+    <string name="profile">"Profile"</string>
+    <string name="string_count_glass">0</string>
+    <string name="string_count_metal">0</string>
+    <string name="string_count_paper">0</string>
+    <string name="string_count_plastic">0</string>
+    <string name="glass">(Glass)</string>
+    <string name="metal">(Metal)</string>
+    <string name="paper">(Paper)</string>
+    <string name="plastic">(Plastic)</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="facebook_app_id">1215439502357212</string>
     <string name="facebook_client_token">007bdfe57e3442cac58d6c5e555fc222</string>
 

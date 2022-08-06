@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fl_leaderboard"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StatsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/textview_rewards"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rewards_textview_header_glass"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="Rewards"
+        android:padding="5dp"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/rewards_textview_count_glass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/rewards_textview_header_glass"
+        app:layout_constraintTop_toBottomOf="@id/textview_rewards"
+        android:text="@string/string_count_glass"
+        android:textSize="15sp"
+        android:padding="5dp"/>
+    <TextView
+        android:id="@+id/rewards_textview_header_glass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/rewards_textview_header_glass"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textview_rewards"
+        android:text=" items of Glass recycled:"
+        android:textSize="15sp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"/>
+    <ProgressBar
+        android:id="@+id/rewards_progress_bar_glass"
+        style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rewards_textview_count_glass"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/rewards_btn_redeem_glass"
+        android:padding="5dp"
+        android:visibility="visible"
+        tools:visibility="visible"/>
+    <Button
+        android:id="@+id/rewards_btn_redeem_glass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Redeem Vouchers (Glass)"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rewards_progress_bar_glass"
+        app:layout_constraintBottom_toTopOf="@id/rewards_textview_header_metal"/>
+
+    <TextView
+        android:id="@+id/rewards_textview_count_metal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/rewards_textview_header_metal"
+        app:layout_constraintTop_toBottomOf="@id/rewards_btn_redeem_glass"
+        android:text="@string/string_count_metal"
+        android:textSize="15dp"
+        android:padding="5dp"/>
+    <TextView
+        android:id="@+id/rewards_textview_header_metal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/rewards_textview_header_metal"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rewards_btn_redeem_glass"
+        android:text=" items of Metal recycled:"
+        android:textSize="15sp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"/>
+    <ProgressBar
+        android:id="@+id/rewards_progress_bar_metal"
+        style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rewards_textview_header_metal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/rewards_btn_redeem_metal"
+        android:padding="5dp"
+        android:visibility="visible"
+        tools:visibility="visible"/>
+
+    <Button
+        android:id="@+id/rewards_btn_redeem_metal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Redeem Vouchers (Metal)"
+        app:layout_constraintBottom_toTopOf="@id/rewards_textview_header_paper"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rewards_progress_bar_metal" />
+
+    <TextView
+        android:id="@+id/rewards_textview_count_paper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/rewards_textview_header_paper"
+        app:layout_constraintTop_toBottomOf="@id/rewards_btn_redeem_metal"
+        android:text="@string/string_count_paper"
+        android:textSize="15sp"
+        android:padding="5dp"/>
+    <TextView
+        android:id="@+id/rewards_textview_header_paper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/rewards_textview_header_paper"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rewards_btn_redeem_metal"
+        android:text=" items of Paper recycled:"
+        android:textSize="15sp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"/>
+    <ProgressBar
+        android:id="@+id/rewards_progress_bar_paper"
+        style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rewards_textview_count_paper"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/rewards_btn_redeem_paper"
+        android:padding="5dp"
+        android:visibility="visible"
+        tools:visibility="visible"/>
+
+    <Button
+        android:id="@+id/rewards_btn_redeem_paper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Redeem Vouchers (Paper)"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rewards_progress_bar_paper"
+        app:layout_constraintBottom_toTopOf="@id/rewards_textview_header_plastic"/>
+
+    <TextView
+        android:id="@+id/rewards_textview_count_plastic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/rewards_textview_header_plastic"
+        app:layout_constraintTop_toBottomOf="@id/rewards_btn_redeem_paper"
+        android:text="@string/string_count_plastic"
+        android:textSize="15sp"
+        android:padding="5dp"/>
+    <TextView
+        android:id="@+id/rewards_textview_header_plastic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/rewards_textview_header_plastic"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rewards_btn_redeem_paper"
+        android:text=" items of Plastic recycled:"
+        android:textSize="15sp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"/>
+    <ProgressBar
+        android:id="@+id/rewards_progress_bar_plastic"
+        style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rewards_textview_count_plastic"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/rewards_btn_redeem_plastic"
+        android:padding="5dp"
+        android:visibility="visible"
+        tools:visibility="visible"/>
+
+    <Button
+        android:id="@+id/rewards_btn_redeem_plastic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Redeem Vouchers (Plastic)"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rewards_progress_bar_plastic" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
