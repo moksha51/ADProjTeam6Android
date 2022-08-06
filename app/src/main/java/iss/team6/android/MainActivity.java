@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentContainer = findViewById(R.id.fragment_container);
         replaceFragment(new HomeFragment());
 
+        //testing text
+
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
 
