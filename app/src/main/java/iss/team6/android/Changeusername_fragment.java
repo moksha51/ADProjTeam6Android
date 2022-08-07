@@ -3,13 +3,14 @@ package iss.team6.android;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 public class Changeusername_fragment extends Fragment {
@@ -24,14 +25,23 @@ public class Changeusername_fragment extends Fragment {
 
     Button savenewuser;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_changeusername_fragment);
+    public Changeusername_fragment(){
+        //Reqyured empty public constructor
+    }
 
-        newusername = findViewById(R.id.newusername);
-        oldusername = findViewById(R.id.oldusername);
-        savenewuser = findViewById(R.id.savenewuser);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+
+        View view = inflater.inflate(R.layout.activity_changeusername_fragment, container, false);
+
+        newusername = view.findViewById(R.id.newusername);
+        oldusername = view.findViewById(R.id.oldusername);
+        savenewuser = view.findViewById(R.id.savenewuser);
         String newuserpassword = "Singapore";
 
 
@@ -55,6 +65,7 @@ public class Changeusername_fragment extends Fragment {
                 }
             }
         });
+        return view;
     }
 
     // For when the database is ready
