@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-public class changeusername_fragment extends Fragment {
+public class Changeusername_fragment extends Fragment {
 
     EditText oldusername;
     EditText newusername;
