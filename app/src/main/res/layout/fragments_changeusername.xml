@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments_changeusername">
+
+    <EditText
+        android:id="@+id/newuserpassword"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/rounded_button"
+        android:gravity="start"
+        android:padding="6dp"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="252dp"
+        android:alpha="0.0"/>
+
+    <TextView
+        android:id="@+id/oldusertext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Old Username:"
+        android:textColor="@color/text_dirtygreen"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/oldusername"
+        tools:layout_editor_absoluteY="301dp" />
+
+    <EditText
+        android:id="@+id/oldusername"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:background="@drawable/rounded_button"
+        android:gravity="start"
+        android:hint="old username"
+        android:padding="6dp"
+        android:textColorHint="@color/white"
+        app:layout_constraintLeft_toRightOf="@id/oldusertext"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="291dp" />
+
+    <TextView
+        android:id="@+id/newusertext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Username:"
+        android:textColor="@color/text_dirtygreen"
+        android:textSize="15sp"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/newusername"
+        tools:layout_editor_absoluteY="362dp" />
+
+    <EditText
+        android:id="@+id/newusername"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/rounded_button"
+        android:gravity="start"
+        android:padding="6dp"
+        android:hint="new username"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/newusertext"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="352dp" />
+
+    <TextView
+        android:id="@+id/newuserinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:text="New username should at least contain an uppercase"
+        android:textColor="@color/text_dirtygreen"
+        android:textSize="11sp"
+        tools:layout_editor_absoluteX="70dp"
+        tools:layout_editor_absoluteY="407dp" />
+
+    <Button
+        android:id="@+id/savenewuser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Save"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:padding="6dp"
+        android:textColor="@color/text_green"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="152dp"
+        tools:layout_editor_absoluteY="439dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

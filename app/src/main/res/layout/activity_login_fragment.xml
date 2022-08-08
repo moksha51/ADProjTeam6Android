@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginFragment">
+    tools:context=".Login">
 
     <RelativeLayout
         android:id="@+id/bg"
@@ -16,7 +16,7 @@
         app:layout_constraintBottom_toTopOf="@id/footer"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="59dp">
 
 
     </RelativeLayout>
@@ -25,12 +25,12 @@
         android:id="@+id/loginlogo"
         android:layout_width="320dp"
         android:layout_height="140dp"
-        android:padding="20dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/logo"
+        android:padding="20dp"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="97dp"
-        tools:ignore="MissingConstraints">
+        tools:layout_editor_absoluteY="97dp">
 
     </ImageView>
 
@@ -38,15 +38,15 @@
         android:id="@+id/username"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:gravity="start"
         android:layout_margin="80dp"
         android:background="@drawable/rounded_button"
+        android:gravity="start"
         android:padding="6dp"
-        android:text="@string/username"
-        android:textColor="@color/white"
+        android:hint="@string/username"
+        android:textColorHint="@color/white"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="115dp"
-        tools:layout_editor_absoluteY="332dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="332dp" />
 
     <EditText
         android:id="@+id/password"
@@ -56,12 +56,11 @@
         android:background="@drawable/rounded_button"
         android:gravity="start"
         android:padding="6dp"
-        android:text="@string/password"
-        android:textColor="@color/white"
-        tools:layout_editor_absoluteX="115dp"
-        tools:layout_editor_absoluteY="393dp"
+        android:hint="@string/password"
+        android:textColorHint="@color/white"
         tools:ignore="MissingConstraints"
-        />
+        tools:layout_editor_absoluteX="115dp"
+        tools:layout_editor_absoluteY="393dp" />
 
     <Button
         android:id="@+id/login"
@@ -73,9 +72,9 @@
         android:padding="6dp"
         android:text="@string/login"
         android:textColor="@color/text_green"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="452dp"
-        tools:ignore="MissingConstraints"/>
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="159dp"
+        tools:layout_editor_absoluteY="452dp" />
 
     <Button
         android:id="@+id/createaccount"
@@ -86,9 +85,10 @@
         android:padding="6dp"
         android:text="@string/createacct"
         android:textColor="@color/text_green"
-        tools:layout_editor_absoluteX="125dp"
-        tools:layout_editor_absoluteY="502dp"
-        tools:ignore="MissingConstraints"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="502dp" />
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
@@ -97,8 +97,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
         app:layout_constraintTop_toBottomOf="@id/createaccount"
-        tools:layout_editor_absoluteX="108dp"
-        tools:ignore="MissingConstraints"/>
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="108dp" />
 
     <ImageView
         android:id="@+id/footer"
@@ -107,7 +107,13 @@
         android:layout_alignParentBottom="true"
         android:background="@color/menu_bar_green"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent">
-    </ImageView>
+        app:layout_constraintBottom_toBottomOf="parent"></ImageView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="205dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
