@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(new StatsFragment());
                     break;
                 case R.id.profileFragment:
-                    replaceFragment(new ProfileFragment());
+                    Intent intent = new Intent(this, Userprofile.class);
                     break;
             }
             return true;
