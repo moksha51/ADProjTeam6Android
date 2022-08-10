@@ -4,86 +4,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments_changeusername">
+    tools:context=".changeprofile">
 
-    <EditText
-        android:id="@+id/newuserpassword"
-        android:layout_width="250dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/rounded_button"
-        android:gravity="start"
-        android:padding="6dp"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="252dp"
-        android:alpha="0.0"/>
+    <ImageView
+        android:id="@+id/changeprofilepic"
+        android:layout_width="320dp"
+        android:layout_height="140dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/changeprofile"
+        android:padding="20dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="97dp">
 
-    <TextView
-        android:id="@+id/oldusertext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Old Username:"
-        android:textColor="@color/text_dirtygreen"
-        android:textSize="15sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/oldusername"
-        tools:layout_editor_absoluteY="301dp" />
-
-    <EditText
-        android:id="@+id/oldusername"
-        android:layout_width="250dp"
-        android:layout_height="30dp"
-        android:background="@drawable/rounded_button"
-        android:gravity="start"
-        android:hint="old username"
-        android:padding="6dp"
-        android:textColorHint="@color/white"
-        app:layout_constraintLeft_toRightOf="@id/oldusertext"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="291dp" />
+    </ImageView>
 
     <TextView
         android:id="@+id/newusertext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Username:"
+        android:layout_marginLeft="16dp"
+        android:text="Username:"
+        android:textColor="@color/text_dirtygreen"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/newUsername"
+        tools:layout_editor_absoluteY="301dp" />
+
+    <EditText
+        android:id="@+id/newUsername"
+        android:layout_width="280dp"
+        android:layout_height="30dp"
+        android:background="@drawable/rounded_button"
+        android:gravity="start"
+        android:hint="update username"
+        android:padding="6dp"
+        android:textColorHint="@color/white"
+        app:layout_constraintLeft_toRightOf="@id/newusertext"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="291dp" />
+
+    <TextView
+        android:id="@+id/newpasstext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password:"
         android:textColor="@color/text_dirtygreen"
         android:textSize="15sp"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/newusername"
+        app:layout_constraintRight_toLeftOf="@id/newPassword"
         tools:layout_editor_absoluteY="362dp" />
 
     <EditText
-        android:id="@+id/newusername"
-        android:layout_width="250dp"
+        android:id="@+id/newPassword"
+        android:layout_width="280dp"
         android:layout_height="30dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/rounded_button"
         android:gravity="start"
         android:padding="6dp"
-        android:hint="new username"
+        android:hint="update password"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/newusertext"
+        app:layout_constraintLeft_toRightOf="@id/newpasstext"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_editor_absoluteY="352dp" />
 
     <TextView
-        android:id="@+id/newuserinfo"
+        android:id="@+id/newpassinfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
-        android:text="New username should at least contain an uppercase"
+        android:text="New password should at least contain an uppercase and a number"
         android:textColor="@color/text_dirtygreen"
         android:textSize="11sp"
-        tools:layout_editor_absoluteX="70dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="43dp"
         tools:layout_editor_absoluteY="407dp" />
 
     <Button
-        android:id="@+id/savenewuser"
+        android:id="@+id/savenewdeets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

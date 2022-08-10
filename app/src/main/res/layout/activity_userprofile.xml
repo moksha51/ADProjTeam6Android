@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserprofileFragment">
-
+    tools:context=".Userprofile">
 
     <TextView
         android:id="@+id/user"
@@ -29,6 +28,19 @@
         app:layout_constraintTop_toBottomOf="@id/user"
         tools:layout_editor_absoluteX="32dp" />
 
+    <ImageView
+        android:id="@+id/changeprofilepic"
+        android:layout_width="117dp"
+        android:layout_height="117dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/icon"
+        android:padding="20dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="256dp"
+        tools:layout_editor_absoluteY="68dp">
+
+    </ImageView>
+
     <Button
         android:id="@+id/btnlogout"
         android:layout_width="match_parent"
@@ -42,25 +54,15 @@
         />
 
     <Button
-        android:id="@+id/btnchangeusername"
+        android:id="@+id/btnchangeuserprofile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/banner_green"
         android:padding="40dp"
-        android:text="Change Username"
+        android:text="Change Userprofile"
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/btnlogout"
         />
 
-    <Button
-        android:id="@+id/btnchangepassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/banner_green"
-        android:padding="40dp"
-        android:text="Change Password"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/btnchangeusername"
-        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

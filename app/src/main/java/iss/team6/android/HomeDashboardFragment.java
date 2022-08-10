@@ -2,7 +2,19 @@ package iss.team6.android;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.util.ArrayList;
 
 public class HomeDashboardFragment extends AppCompatActivity {
 
@@ -13,7 +25,7 @@ public class HomeDashboardFragment extends AppCompatActivity {
     BarDataSet barDataSet;
     ArrayList barEntriesArrayList;
 
-    public Dashboard_Fragment() {
+    public HomeDashboardFragment() {
         // Required empty public constructor
     }
 
@@ -27,7 +39,7 @@ public class HomeDashboardFragment extends AppCompatActivity {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.activity_dashboard_fragment, container, false);
+        View view = inflater.inflate(R.layout.activity_home_dashboard_fragment, container, false);
 
         // Initialising variable for bar chart
         barChart = view.findViewById(R.id.idBarChart);
@@ -60,7 +72,7 @@ public class HomeDashboardFragment extends AppCompatActivity {
 
     private void getData(){
         //creating new array list
-        barEntriesArrayList = new ArrayList();
+        ArrayList<BarEntry> barEntriesArrayList = new ArrayList<>();
 
         barEntriesArrayList.add(new BarEntry(1f,7));
         barEntriesArrayList.add(new BarEntry(2f,2));
