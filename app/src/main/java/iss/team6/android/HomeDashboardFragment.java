@@ -72,7 +72,8 @@ public class HomeDashboardFragment extends AppCompatActivity {
 
     private void getData(){
         //creating new array list
-        ArrayList<BarEntry> barEntriesArrayList = new ArrayList<>();
+        //ArrayList<BarEntry> 
+        barEntriesArrayList = new ArrayList<>();
 
         barEntriesArrayList.add(new BarEntry(1f,7));
         barEntriesArrayList.add(new BarEntry(2f,2));
