@@ -1,7 +1,16 @@
 package iss.team6.android;
 
+import android.annotation.SuppressLint;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageAnalysis;
@@ -9,37 +18,13 @@ import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
-import androidx.camera.core.VideoCapture;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Environment;
-import android.os.Handler;
-import android.provider.MediaStore;
-import android.util.Log;
-import android.util.Size;
-import android.view.Surface;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-
 import com.google.common.util.concurrent.ListenableFuture;
 
-import java.io.File;
-import java.net.URI;
-import java.util.Date;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 
@@ -48,7 +33,6 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
 
     private PreviewView previewView;
     private ImageCapture imageCapture;
-    private VideoCapture videoCapture;
     private Button btn_TakePhoto;
     private Button btn_Trashify;
     private final static int SELECT_PICTURE = 200;

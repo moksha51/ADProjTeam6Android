@@ -1,16 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fl_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    android:id="@+id/profileFragment"
+    tools:context=".MainActivity">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/changeprofilepic"
+        android:layout_width="117dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/icon">
+
+    </ImageView>
+
     <TextView
-        android:id="@+id/textview_profile"
+        android:id="@+id/user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="profile" />
+        android:layout_toEndOf="@id/changeprofilepic"
+        android:layout_alignBottom="@id/changeprofilepic"
+        android:layout_marginStart="55dp"
+        android:text="@string/user"
+        android:textColor="@color/text_dirtygreen"
+        android:textSize="35sp"
+        android:textStyle="bold|italic" />
 
-</FrameLayout>
+
+    <Button
+        android:id="@+id/btnchangeuserprofile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@color/banner_green"
+        android:padding="40dp"
+        android:text="@string/changeUserprofile"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/btnlogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/banner_green"
+        android:padding="40dp"
+        android:text="@string/logout"
+        android:textColor="@color/white"
+        android:layout_below="@id/btnchangeuserprofile" />
+
+
+</RelativeLayout>

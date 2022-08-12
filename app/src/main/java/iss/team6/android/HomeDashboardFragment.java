@@ -1,12 +1,12 @@
 package iss.team6.android;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -16,7 +16,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
-public class HomeDashboardFragment extends AppCompatActivity {
+public class HomeDashboardFragment extends Fragment {
 
 
     //https://learntodroid.com/how-to-display-a-bar-chart-in-your-android-app/
@@ -31,12 +31,12 @@ public class HomeDashboardFragment extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_home_dashboard_fragment, container, false);
@@ -65,8 +65,9 @@ public class HomeDashboardFragment extends AppCompatActivity {
 
         // setting text size
         barDataSet.setValueTextSize(16f);
-        barChart.getDescription().setEnabled(false);
+        barChart.getDescription().setEnabled(true);
 
+        //test
         return view;
     }
 

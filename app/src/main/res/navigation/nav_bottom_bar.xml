@@ -23,12 +23,12 @@
         tools:layout="@layout/fragment_stats" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="iss.team6.android.HomeFragment"
+        android:name="iss.team6.android.HomeDashboardFragment"
         android:label="fragment_home2"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/activity_home_dashboard_fragment" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="iss.team6.android.ProfileFragment"
+        android:name="iss.team6.android.UserprofileActivity"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/activity_userprofile"/>
 </navigation>
