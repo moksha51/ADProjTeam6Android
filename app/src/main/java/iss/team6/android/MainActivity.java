@@ -1,22 +1,25 @@
 package iss.team6.android;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
+    Intent intent = null;
 
     public static final String EXTERNAL_URL = "externalUrl";
     BottomNavigationView bottomNavigationView;
@@ -51,16 +54,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         boolean alrLoggedInOk = alreadyLoggedIn();
-        if(alrLoggedInOk) {
+        if (alrLoggedInOk) {
             bottomNavigationView = findViewById(R.id.navMenu);
             fragmentContainer = findViewById(R.id.fragment_container);
-            replaceFragment(new HomeFragment());
-        }
-        else{
-            Intent intent = new Intent(this, LoginActivity.class);
+            replaceFragment(new HomeDashboardFragment());
+        } else {
+            intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
-        //testing text 12345
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -74,14 +75,14 @@ public class MainActivity extends AppCompatActivity {
                     launchExternalPage(externalUrl);
                     break;
                 case R.id.cameraFragment:
-                    Intent intent = new Intent(this, CameraActivity.class);
+                    intent = new Intent(this, CameraActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.statsFragment:
                     replaceFragment(new StatsFragment());
                     break;
                 case R.id.profileFragment:
-                    Intent intent = new Intent(this, UserprofileActivity.class);
+                    intent = new Intent(this, UserprofileActivity.class);
                     startActivity(intent);
                     break;
             }
@@ -103,21 +104,19 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private boolean alreadyLoggedIn(){
+    private boolean alreadyLoggedIn() {
 
         callbackManager = CallbackManager.Factory.create();
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
 
-        SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
+        SharedPreferences pref = getSharedPreferences("user_credentials",Context.MODE_PRIVATE);
         if (accessToken != null && accessToken.isExpired() == false) {
             return true;
-        }
-        else if (pref != null){
-            return true;
+        } else if (pref != null) {
+            if (pref.contains("username") && pref.contains("password")) {
+                return true;
+            }
         }
         return false;
     }
-
-
-
 }

@@ -93,6 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("username", Username);
                     editor.putString("password", Password);
                     editor.commit();
+                    finish();
 
                     Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_SHORT).show();
                     startProtectedActivity();
@@ -115,6 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("username", Username);
                     editor.putString("password", Password);
                     editor.commit();
+                    finish();
 
                     Toast.makeText(getApplicationContext(), "New account created!", Toast.LENGTH_SHORT).show();
                     startProtectedActivity();
@@ -132,7 +134,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean logIn(String username, String password) {
-        if (username.equals("Goodmorning") && password.equals("Singapore")) {
+        SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
+        pref.getString("username", username);
+        pref.getString("password", password);
+        //"Goodmorning" and "Singapore" below should be equals to JSON object database username and password
+        if (username.equals("GM") && password.equals("SG")) {
+
             return true;
         }
         return false;
@@ -159,7 +166,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void startProtectedActivity() {
-        Intent intent = new Intent(this, HomeDashboardFragment.class);
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
     }
 }

@@ -1,46 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"    xmlns:app="http://schemas.android.com/apk/res-auto"    xmlns:tools="http://schemas.android.com/tools"    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserprofileActivity">
-
-    <TextView
-        android:id="@+id/user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="nina1lim"
-        android:textColor="@color/text_dirtygreen"
-        android:textSize="35sp"
-        android:textStyle="bold|italic"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="98dp" />
-
-    <TextView
-        android:id="@+id/datejoined"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Joined since Aug 2022"
-        android:textColor="@color/text_dirtygreen"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/user"
-        tools:layout_editor_absoluteX="32dp" />
-
     <ImageView
         android:id="@+id/changeprofilepic"
         android:layout_width="117dp"
         android:layout_height="117dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="100dp"
         android:background="@drawable/icon"
-        android:padding="20dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="256dp"
-        tools:layout_editor_absoluteY="68dp">
-
+        >
     </ImageView>
-
+    <TextView
+        android:id="@+id/user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/changeprofilepic"
+        android:layout_alignBottom="@id/changeprofilepic"
+        android:layout_marginStart="55dp"
+        android:text="@string/user"
+        android:textColor="@color/text_dirtygreen"
+        android:textSize="35sp"
+        android:textStyle="bold|italic" />
+    <Button
+        android:id="@+id/btnchangeuserprofile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@color/banner_green"
+        android:padding="40dp"
+        android:text="@string/changeUserprofile"
+        android:textColor="@color/white" />
     <Button
         android:id="@+id/btnlogout"
         android:layout_width="match_parent"
@@ -49,20 +39,5 @@
         android:padding="40dp"
         android:text="@string/logout"
         android:textColor="@color/white"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="246dp"
-        />
-
-    <Button
-        android:id="@+id/btnchangeuserprofile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/banner_green"
-        android:padding="40dp"
-        android:text="Change Userprofile"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/btnlogout"
-        />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_below="@id/btnchangeuserprofile" />
+</RelativeLayout>
