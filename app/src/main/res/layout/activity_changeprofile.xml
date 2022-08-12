@@ -1,102 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".changeprofile">
+    tools:context=".ChangeProfileActivity">
 
     <ImageView
         android:id="@+id/changeprofilepic"
         android:layout_width="320dp"
         android:layout_height="140dp"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/changeprofile"
-        android:padding="20dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="97dp">
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/changeprofile" />
 
-    </ImageView>
 
     <TextView
         android:id="@+id/newusertext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_below="@id/changeprofilepic"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="50dp"
         android:text="Username:"
         android:textColor="@color/text_dirtygreen"
-        android:textSize="15sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/newUsername"
-        tools:layout_editor_absoluteY="301dp" />
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/newUsername"
-        android:layout_width="280dp"
+        android:layout_width="240dp"
         android:layout_height="30dp"
+        android:layout_below="@id/changeprofilepic"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@id/newusertext"
         android:background="@drawable/rounded_button"
         android:gravity="start"
         android:hint="update username"
         android:padding="6dp"
-        android:textColorHint="@color/white"
-        app:layout_constraintLeft_toRightOf="@id/newusertext"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="291dp" />
+        android:textColorHint="@color/white" />
 
     <TextView
         android:id="@+id/newpasstext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/newusertext"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="36dp"
         android:text="Password:"
         android:textColor="@color/text_dirtygreen"
-        android:textSize="15sp"
-        app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/newPassword"
-        tools:layout_editor_absoluteY="362dp" />
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/newPassword"
-        android:layout_width="280dp"
+        android:layout_width="240dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="16dp"
+        android:layout_below="@id/newUsername"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@id/newpasstext"
         android:background="@drawable/rounded_button"
         android:gravity="start"
-        android:padding="6dp"
         android:hint="update password"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/newpasstext"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="352dp" />
+        android:padding="6dp"
+        android:textColorHint="@color/white" />
 
     <TextView
         android:id="@+id/newpassinfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_below="@id/newPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
         android:gravity="center"
         android:text="New password should at least contain an uppercase and a number"
         android:textColor="@color/text_dirtygreen"
-        android:textSize="11sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="407dp" />
+        android:textSize="11sp" />
 
     <Button
         android:id="@+id/savenewdeets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Save"
+        android:layout_below="@id/newpassinfo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:padding="6dp"
+        android:text="Save"
         android:textColor="@color/text_green"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="152dp"
-        tools:layout_editor_absoluteY="439dp" />
+        />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

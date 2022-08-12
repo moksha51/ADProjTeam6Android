@@ -1,22 +1,19 @@
 package iss.team6.android;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.fragment.app.ListFragment;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Button;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     View fragmentContainer;
     private static final int REQUEST_CODE = 100;
+
+    CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,17 +50,23 @@ public class MainActivity extends AppCompatActivity {
             requestPermissions(new String[]{Manifest.permission.ACCESS_NETWORK_STATE}, REQUEST_CODE);
         }
 
-        bottomNavigationView = findViewById(R.id.navMenu);
-        fragmentContainer = findViewById(R.id.fragment_container);
-        replaceFragment(new HomeFragment());
-
+        boolean alrLoggedInOk = alreadyLoggedIn();
+        if(alrLoggedInOk) {
+            bottomNavigationView = findViewById(R.id.navMenu);
+            fragmentContainer = findViewById(R.id.fragment_container);
+            replaceFragment(new HomeFragment());
+        }
+        else{
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
         //testing text 12345
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
 
                 case R.id.homeFragment:
-                    replaceFragment(new HomeFragment());
+                    replaceFragment(new HomeDashboardFragment());
                     break;
                 case R.id.mapFragment:
                     String externalUrl =
@@ -76,12 +81,14 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(new StatsFragment());
                     break;
                 case R.id.profileFragment:
-                    Intent intent = new Intent(this, Userprofile.class);
+                    Intent intent = new Intent(this, UserprofileActivity.class);
+                    startActivity(intent);
                     break;
             }
             return true;
         });
     }
+
     private void replaceFragment(Fragment fragment) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction trans = fm.beginTransaction();
@@ -95,5 +102,22 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(EXTERNAL_URL, externalUrl);
         startActivity(intent);
     }
+
+    private boolean alreadyLoggedIn(){
+
+        callbackManager = CallbackManager.Factory.create();
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+
+        SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
+        if (accessToken != null && accessToken.isExpired() == false) {
+            return true;
+        }
+        else if (pref != null){
+            return true;
+        }
+        return false;
+    }
+
+
 
 }

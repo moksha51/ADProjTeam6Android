@@ -27,6 +27,8 @@
     <string name="metal">(Metal)</string>
     <string name="paper">(Paper)</string>
     <string name="plastic">(Plastic)</string>
+    <string name="changeUserprofile">"Change Userprofile"</string>
+    <string name="user">"User"</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="facebook_app_id">1215439502357212</string>

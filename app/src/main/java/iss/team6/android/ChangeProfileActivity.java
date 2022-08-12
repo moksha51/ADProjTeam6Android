@@ -13,14 +13,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class changeprofile extends AppCompatActivity {
+public class ChangeProfileActivity extends AppCompatActivity {
 
     EditText newUsername;
     EditText newPassword;
 
     Button savenewdeets;
 
-    public changeprofile(){
+    public ChangeProfileActivity(){
         //Required empty public constructor
     }
 
