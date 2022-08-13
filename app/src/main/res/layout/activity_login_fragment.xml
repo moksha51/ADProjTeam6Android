@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,33 +11,39 @@
         android:id="@+id/loginlogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginRight="25dp"
         android:background="@drawable/logo"
-        android:padding="20dp" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/username"
+        android:layout_marginTop="65dp"
+        />
 
     <EditText
         android:id="@+id/username"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="320dp"
-        android:layout_centerHorizontal="true"
         android:background="@drawable/rounded_button"
-        android:gravity="start"
         android:hint="@string/username"
-        android:padding="6dp"
-        android:textColorHint="@color/white" />
+        android:padding="10dp"
+        android:layout_marginTop="30dp"
+        android:textColorHint="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/loginlogo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="380dp"
-        android:layout_centerHorizontal="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/username"
         android:background="@drawable/rounded_button"
         android:gravity="start"
-        android:padding="6dp"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
         android:hint="@string/password"
         android:textColorHint="@color/white" />
 
@@ -45,11 +51,12 @@
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="430dp"
-        android:layout_centerHorizontal="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password"
         android:background="@android:color/transparent"
         android:gravity="center"
-        android:padding="6dp"
+        android:padding="30dp"
         android:text="@string/login"
         android:textColor="@color/text_green" />
 
@@ -57,11 +64,13 @@
         android:id="@+id/createaccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="480dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login"
         android:background="@android:color/transparent"
         android:gravity="center"
-        android:padding="6dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="30dp"
         android:text="@string/createacct"
         android:textColor="@color/text_green" />
 
@@ -69,9 +78,10 @@
         android:id="@+id/fblogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="545dp"
-        android:layout_centerHorizontal="true"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/createaccount"
+        />
 
     <ImageView
         android:id="@+id/footer"
@@ -81,4 +91,4 @@
         android:background="@color/menu_bar_green"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
