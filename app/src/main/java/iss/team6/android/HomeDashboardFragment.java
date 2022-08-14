@@ -1,5 +1,7 @@
 package iss.team6.android;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,8 +21,6 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 
 public class HomeDashboardFragment extends Fragment {
-
-
     //https://learntodroid.com/how-to-display-a-bar-chart-in-your-android-app/
     BarChart barChart;
     BarData barData;
@@ -33,7 +33,6 @@ public class HomeDashboardFragment extends Fragment {
     int friCount;
     int satCount;
     int sunCount;
-    MainActivity mainActivity;
 
     public HomeDashboardFragment() {
         // Required empty public constructor
@@ -47,15 +46,7 @@ public class HomeDashboardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        Bundle bundle = this.getArguments();
-//        monCount = bundle.getInt("mon");
-//        tueCount = bundle.getInt("tue");
-//        wedCount = bundle.getInt("wed");
-//        thuCount = bundle.getInt("thu");
-//        friCount = bundle.getInt("fri");
-//        satCount = bundle.getInt("sat");
-//        sunCount = bundle.getInt("sun");
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.activity_home_dashboard_fragment, container, false);
 
         // Initialising variable for bar chart
@@ -101,6 +92,16 @@ public class HomeDashboardFragment extends Fragment {
     }
 
     private void getData(){
+
+        SharedPreferences pref = getActivity().getSharedPreferences("dayCount", Context.MODE_PRIVATE);
+        monCount = pref.getInt("monCount", monCount);
+        tueCount = pref.getInt("tueCount", tueCount);
+        wedCount = pref.getInt("wedCount", wedCount);
+        thuCount = pref.getInt("thuCount", thuCount);
+        friCount = pref.getInt("friCount", friCount);
+        satCount = pref.getInt("satCount", satCount);
+        sunCount = pref.getInt("sunCount", sunCount);
+
         //creating new array list
         //ArrayList<BarEntry>
         barEntriesArrayList = new ArrayList<>();

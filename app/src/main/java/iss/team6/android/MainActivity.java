@@ -38,18 +38,15 @@ public class MainActivity extends AppCompatActivity {
     CallbackManager callbackManager;
     static final String apiendpoint = "https://filesamples.com/samples/code/json/sample2.json";
     String username = "";
-    int monCount;
-    int tueCount;
-    int wedCount;
-    int thuCount;
-    int friCount;
-    int satCount;
-    int sunCount;
+    int min = 50;
+    int max = 100;
+
     int glassCount;
     int metalCount;
     int plasticCount;
     int paperCount;
     String url = apiendpoint + username;
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.homeFragment:
                     getDayCount();
+                    Toast.makeText(this, "Refreshing stats", Toast.LENGTH_SHORT).show();
                     replaceFragment(new HomeDashboardFragment());
                     break;
                 case R.id.mapFragment:
@@ -103,8 +101,9 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case R.id.statsFragment:
-                    replaceFragment(new StatsFragment());
                     getTypeCount();
+                    replaceFragment(new StatsFragment());
+                    Toast.makeText(this, "Refreshing Stats", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.profileFragment:
                     replaceFragment(new UserProfileFragment());
@@ -145,46 +144,100 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getDayCount(){
-        RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-        final String apiendpoint = "https://filesamples.com/samples/code/json/sample2.json";
-        JsonObjectRequest jsonOjectRequest = new JsonObjectRequest(Request.Method.GET, apiendpoint, null, new Response.Listener<JSONObject>() {
+        new Thread(new Runnable() {
             @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    monCount = response.getInt("age");
-                     String abc = response.getString("firstName");
-//                    tueCount = response.getInt("age");
-//                    wedCount = response.getInt("age");
-//                    thuCount = response.getInt("age");
-//                    friCount = response.getInt("age");
-//                    satCount = response.getInt("age");
-//                    sunCount = response.getInt("age");
-                    Toast.makeText(MainActivity.this, abc + monCount, Toast.LENGTH_SHORT).show();
-                    SharedPreferences pref = getSharedPreferences("dayCount", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = pref.edit();
-                    editor.putInt("monCount", monCount);
-//                    editor.putInt("tueCount", tueCount);
-//                    editor.putInt("wedCount", wedCount);
-//                    editor.putInt("thuCount", thuCount);
-//                    editor.putInt("friCount", friCount);
-//                    editor.putInt("satCount", satCount);
-//                    editor.putInt("sunCount", sunCount);
-                    editor.commit();
-                    finish();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            public void run() {
+                //int monCount = (int)Math.floor(Math.random()*(max-min+1)+min);
+                int tueCount= (int)Math.floor(Math.random()*(max-min+1)+min);;
+                int wedCount= (int)Math.floor(Math.random()*(max-min+1)+min);;
+                int thuCount= (int)Math.floor(Math.random()*(max-min+1)+min);;
+                int friCount= (int)Math.floor(Math.random()*(max-min+1)+min);;
+                int satCount= (int)Math.floor(Math.random()*(max-min+1)+min);;
+                int sunCount= (int)Math.floor(Math.random()*(max-min+1)+min);;
+                RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+                final String apiendpoint = "https://filesamples.com/samples/code/json/sample2.json";
+                JsonObjectRequest jsonOjectRequest = new JsonObjectRequest(Request.Method.GET, apiendpoint, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            int monCount = response.getInt("age");
+                            String abc = response.getString("firstName");
+//                            tueCount = response.getInt("age");
+//                            wedCount = response.getInt("age");
+//                            thuCount = response.getInt("age");
+//                            friCount = response.getInt("age");
+//                            satCount = response.getInt("age");
+//                            sunCount = response.getInt("age");
+                            //Toast.makeText(MainActivity.this, abc + monCount , Toast.LENGTH_SHORT).show();
+                            SharedPreferences pref = getSharedPreferences("dayCount", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putInt("monCount", monCount);
+                            editor.putInt("tueCount", tueCount);
+                            editor.putInt("wedCount", wedCount);
+                            editor.putInt("thuCount", thuCount);
+                            editor.putInt("friCount", friCount);
+                            editor.putInt("satCount", satCount);
+                            editor.putInt("sunCount", sunCount);
+                            editor.apply();
+                            replaceFragment(new HomeDashboardFragment());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this, "Error loading data", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                queue.add(jsonOjectRequest);
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity.this, "Error loading data", Toast.LENGTH_SHORT).show();
-            }
-        });
-        queue.add(jsonOjectRequest);
+        }).start();
     }
 
     public void getTypeCount(){
-
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                glassCount = (int)Math.floor(Math.random()*(max-min+1)+min);
+                metalCount= (int)Math.floor(Math.random()*(max-min+1)+min);;
+                plasticCount= (int)Math.floor(Math.random()*(max-min+1)+min);;
+                paperCount= (int)Math.floor(Math.random()*(max-min+1)+min);;
+                RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+                final String apiendpoint = "https://filesamples.com/samples/code/json/sample2.json";
+                JsonObjectRequest jsonOjectRequest = new JsonObjectRequest(Request.Method.GET, apiendpoint, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            glassCount = response.getInt("age");
+                            String abc = response.getString("firstName");
+//                            tueCount = response.getInt("age");
+//                            wedCount = response.getInt("age");
+//                            thuCount = response.getInt("age");
+//                            friCount = response.getInt("age");
+//                            satCount = response.getInt("age");
+//                            sunCount = response.getInt("age");
+                            //Toast.makeText(MainActivity.this, abc + glassCount , Toast.LENGTH_SHORT).show();
+                            SharedPreferences pref = getSharedPreferences("trashTypeCount", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putInt("glassCount", glassCount);
+                            editor.putInt("metalCount", metalCount);
+                            editor.putInt("paperCount", paperCount);
+                            editor.putInt("plasticCount", plasticCount);
+                            editor.apply();
+                            replaceFragment(new StatsFragment());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this, "Error loading data", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                queue.add(jsonOjectRequest);
+            }
+        }).start();
     }
 }
