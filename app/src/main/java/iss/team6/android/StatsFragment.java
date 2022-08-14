@@ -1,6 +1,8 @@
 package iss.team6.android;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
@@ -20,10 +22,10 @@ public class StatsFragment extends Fragment {
 
     Button btn_redeem_glass, btn_redeem_metal, btn_redeem_paper, btn_redeem_plastic;
     ProgressBar progressBar_glass, progressBar_metal, progressBar_paper, progressBar_plastic;
-    int count_glass = 100;
-    int count_metal = 20;
-    int count_paper= 50;
-    int count_plastic = 20;
+    int glassCount;
+    int metalCount;
+    int paperCount;
+    int plasticCount;
     private final static int maxCount = 100;
     Uri uri;
     Intent intent = null;
@@ -45,18 +47,24 @@ public class StatsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_stats, container, false);
 
+        SharedPreferences pref = getActivity().getSharedPreferences("trashTypeCount", Context.MODE_PRIVATE);
+        glassCount = pref.getInt("glassCount", glassCount);
+        metalCount = pref.getInt("metalCount", metalCount);
+        paperCount = pref.getInt("paperCount", paperCount);
+        plasticCount = pref.getInt("plasticCount", plasticCount);
+
         progressBar_glass = view.findViewById(R.id.rewards_progress_bar_glass);
         btn_redeem_glass = view.findViewById(R.id.rewards_btn_redeem_glass);
         rewards_textview_count_glass = view.findViewById(R.id.rewards_textview_count_glass);
         progressBar_glass.setMax(maxCount);
-        rewards_textview_count_glass.setText(String.valueOf(count_glass));
+        rewards_textview_count_glass.setText(String.valueOf(glassCount));
         progressBar_glass.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
         if (btn_redeem_glass != null) {
-            if (count_glass >= 0 && count_glass < maxCount) {
-                progressBar_glass.setProgress(count_glass);
+            if (glassCount >= 0 && glassCount < maxCount) {
+                progressBar_glass.setProgress(glassCount);
                 btn_redeem_glass.setBackgroundColor(Color.GRAY);
-            } else if (count_glass == maxCount) {
-                progressBar_glass.setProgress(count_glass);
+            } else if (glassCount == maxCount) {
+                progressBar_glass.setProgress(glassCount);
                 btn_redeem_glass.setOnClickListener(new View.OnClickListener() {
                     @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
@@ -73,14 +81,14 @@ public class StatsFragment extends Fragment {
         btn_redeem_metal = view.findViewById(R.id.rewards_btn_redeem_metal);
         rewards_textview_count_metal = view.findViewById(R.id.rewards_textview_count_metal);
         progressBar_metal.setMax(maxCount);
-        rewards_textview_count_metal.setText(String.valueOf(count_metal));
+        rewards_textview_count_metal.setText(String.valueOf(metalCount));
         progressBar_metal.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
         if (btn_redeem_metal != null) {
-            if (count_metal >= 0 && count_metal < maxCount) {
-                progressBar_metal.setProgress(count_metal);
+            if (metalCount >= 0 && metalCount < maxCount) {
+                progressBar_metal.setProgress(metalCount);
                 btn_redeem_metal.setBackgroundColor(Color.GRAY);
-            } else if (count_metal == maxCount) {
-                progressBar_metal.setProgress(count_metal);
+            } else if (metalCount == maxCount) {
+                progressBar_metal.setProgress(metalCount);
                 btn_redeem_metal.setOnClickListener(new View.OnClickListener() {
                     @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
@@ -97,14 +105,14 @@ public class StatsFragment extends Fragment {
         btn_redeem_paper = view.findViewById(R.id.rewards_btn_redeem_paper);
         rewards_textview_count_paper = view.findViewById(R.id.rewards_textview_count_paper);
         progressBar_paper.setMax(maxCount);
-        rewards_textview_count_paper.setText(String.valueOf(count_paper));
+        rewards_textview_count_paper.setText(String.valueOf(paperCount));
         progressBar_paper.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
         if (btn_redeem_paper != null) {
-            if (count_paper >= 0 && count_paper < maxCount) {
-                progressBar_paper.setProgress(count_paper);
+            if (paperCount >= 0 && paperCount < maxCount) {
+                progressBar_paper.setProgress(paperCount);
                 btn_redeem_paper.setBackgroundColor(Color.GRAY);
-            } else if (count_paper == maxCount) {
-                progressBar_paper.setProgress(count_paper);
+            } else if (paperCount == maxCount) {
+                progressBar_paper.setProgress(paperCount);
                 btn_redeem_paper.setOnClickListener(new View.OnClickListener() {
                     @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
@@ -121,14 +129,14 @@ public class StatsFragment extends Fragment {
         btn_redeem_plastic = view.findViewById(R.id.rewards_btn_redeem_plastic);
         rewards_textview_count_plastic = view.findViewById(R.id.rewards_textview_count_plastic);
         progressBar_plastic.setMax(maxCount);
-        rewards_textview_count_plastic.setText(String.valueOf(count_plastic));
+        rewards_textview_count_plastic.setText(String.valueOf(plasticCount));
         progressBar_plastic.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
         if (btn_redeem_plastic != null) {
-            if (count_plastic >= 0 && count_plastic < maxCount) {
-                progressBar_plastic.setProgress(count_plastic);
+            if (plasticCount >= 0 && plasticCount < maxCount) {
+                progressBar_plastic.setProgress(plasticCount);
                 btn_redeem_plastic.setBackgroundColor(Color.GRAY);
-            } else if (count_plastic == maxCount) {
-                progressBar_plastic.setProgress(count_plastic);
+            } else if (plasticCount == maxCount) {
+                progressBar_plastic.setProgress(plasticCount);
                 btn_redeem_plastic.setOnClickListener(new View.OnClickListener() {
                     @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override

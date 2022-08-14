@@ -25,17 +25,14 @@ public class LoginActivity extends AppCompatActivity {
     Button login;
     Button createaccount;
     Button fblogin;
-
     EditText username;
     EditText password;
-
     CallbackManager callbackManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_fragment);
+        setContentView(R.layout.activity_login);
 
         //For Facebook login
         callbackManager = CallbackManager.Factory.create();
@@ -139,7 +136,6 @@ public class LoginActivity extends AppCompatActivity {
         pref.getString("password", password);
         //"Goodmorning" and "Singapore" below should be equals to JSON object database username and password
         if (username.equals("GM") && password.equals("SG")) {
-
             return true;
         }
         return false;
@@ -157,14 +153,11 @@ public class LoginActivity extends AppCompatActivity {
 //         boolean dbHelper.isExist(email_id);
 //     }
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
-
-
     private void startProtectedActivity() {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
