@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ChangeProfileActivity">
@@ -10,89 +11,88 @@
         android:id="@+id/changeprofilepic"
         android:layout_width="320dp"
         android:layout_height="140dp"
-        android:layout_gravity="center_horizontal"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="150dp"
-        android:background="@drawable/changeprofile" />
+        android:layout_marginTop="100dp"
+        android:background="@drawable/changeprofile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
         android:id="@+id/newusertext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/changeprofilepic"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="50dp"
-        android:text="Username:"
+        android:layout_marginTop="40dp"
+        android:text="@string/newusertext"
         android:textColor="@color/text_dirtygreen"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/changeprofilepic"
+        app:layout_constraintTop_toBottomOf="@id/changeprofilepic" />
 
     <EditText
         android:id="@+id/newUsername"
-        android:layout_width="240dp"
-        android:layout_height="30dp"
-        android:layout_below="@id/changeprofilepic"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginRight="10dp"
-        android:layout_toRightOf="@id/newusertext"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="35dp"
         android:background="@drawable/rounded_button"
         android:gravity="start"
-        android:hint="update username"
-        android:padding="6dp"
-        android:textColorHint="@color/white" />
+        android:hint="@string/newusername"
+        android:padding="8dp"
+        android:textColorHint="@color/white"
+        app:layout_constraintLeft_toRightOf="@id/newusertext"
+        app:layout_constraintTop_toBottomOf="@id/changeprofilepic" />
 
     <TextView
         android:id="@+id/newpasstext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/newusertext"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="36dp"
-        android:text="Password:"
+        android:layout_marginTop="40dp"
+        android:text="@string/newpasstext"
         android:textColor="@color/text_dirtygreen"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/changeprofilepic"
+        app:layout_constraintTop_toBottomOf="@id/newusertext" />
 
     <EditText
         android:id="@+id/newPassword"
-        android:layout_width="240dp"
-        android:layout_height="30dp"
-        android:layout_below="@id/newUsername"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="10dp"
-        android:layout_toRightOf="@id/newpasstext"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rounded_button"
         android:gravity="start"
-        android:hint="update password"
-        android:padding="6dp"
-        android:textColorHint="@color/white" />
+        android:hint="@string/update_password"
+        android:padding="8dp"
+        android:textColorHint="@color/white"
+        app:layout_constraintLeft_toRightOf="@id/newpasstext"
+        app:layout_constraintTop_toBottomOf="@id/newUsername" />
 
     <TextView
         android:id="@+id/newpassinfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/newPassword"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="New password should at least contain an uppercase and a number"
+        android:text="@string/newpassinfo"
         android:textColor="@color/text_dirtygreen"
-        android:textSize="11sp" />
+        android:textSize="11sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/newPassword" />
 
     <Button
         android:id="@+id/savenewdeets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/newpassinfo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
         android:background="@android:color/transparent"
         android:gravity="center"
-        android:padding="6dp"
-        android:text="Save"
+        android:padding="40dp"
+        android:text="@string/save"
         android:textColor="@color/text_green"
-        />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/newpassinfo" />
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
