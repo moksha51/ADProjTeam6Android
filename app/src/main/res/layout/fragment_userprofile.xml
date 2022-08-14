@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".UserprofileActivity">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/header"
@@ -16,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:padding="50dp" >
 
-        
+
         <ImageView
             android:id="@+id/changeprofilepic"
             android:layout_width="117dp"
@@ -40,8 +39,6 @@
 
     </RelativeLayout>
 
-    
-    
     <Button
         android:id="@+id/btnchangeuserprofile"
         android:layout_width="match_parent"
@@ -66,5 +63,5 @@
         app:layout_constraintTop_toBottomOf="@id/btnchangeuserprofile"
         />
 
-    
+
 </androidx.constraintlayout.widget.ConstraintLayout>
