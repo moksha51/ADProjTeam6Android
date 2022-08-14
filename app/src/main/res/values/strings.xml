@@ -29,17 +29,17 @@
     <string name="plastic">(Plastic)</string>
     <string name="changeUserprofile">"Change Userprofile"</string>
     <string name="user">"User"</string>
+    <string name="mon">"Mon"</string>
+    <string name="tue">"Tue"</string>
+    <string name="wed">"Wed"</string>
+    <string name="thur">"Thu"</string>
+    <string name="fri">"Fri"</string>
+    <string name="sat">"Sat"</string>
+    <string name="sun">"Sun"</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="facebook_app_id">1215439502357212</string>
     <string name="facebook_client_token">007bdfe57e3442cac58d6c5e555fc222</string>
-    <string name="mon">Mon</string>
-    <string name="tue">Tue</string>
-    <string name="sun">Sun</string>
-    <string name="sat">Sat</string>
-    <string name="fri">Fri</string>
-    <string name="thur">Thur</string>
-    <string name="wed">Wed</string>
     <string name="app_logo">App Logo</string>
     <string name="newpassinfo">New password should at least contain an uppercase and a number</string>
     <string name="save">Save</string>

@@ -9,18 +9,14 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class HomeDashboardFragment extends Fragment {
 
@@ -30,6 +26,14 @@ public class HomeDashboardFragment extends Fragment {
     BarData barData;
     BarDataSet barDataSet;
     ArrayList barEntriesArrayList;
+    int monCount;
+    int tueCount;
+    int wedCount;
+    int thuCount;
+    int friCount;
+    int satCount;
+    int sunCount;
+    MainActivity mainActivity;
 
     public HomeDashboardFragment() {
         // Required empty public constructor
@@ -43,7 +47,14 @@ public class HomeDashboardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+//        Bundle bundle = this.getArguments();
+//        monCount = bundle.getInt("mon");
+//        tueCount = bundle.getInt("tue");
+//        wedCount = bundle.getInt("wed");
+//        thuCount = bundle.getInt("thu");
+//        friCount = bundle.getInt("fri");
+//        satCount = bundle.getInt("sat");
+//        sunCount = bundle.getInt("sun");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_home_dashboard_fragment, container, false);
 
@@ -91,16 +102,16 @@ public class HomeDashboardFragment extends Fragment {
 
     private void getData(){
         //creating new array list
-        //ArrayList<BarEntry> 
+        //ArrayList<BarEntry>
         barEntriesArrayList = new ArrayList<>();
 
-        barEntriesArrayList.add(new BarEntry(1f,7));
-        barEntriesArrayList.add(new BarEntry(2f,2));
-        barEntriesArrayList.add(new BarEntry(3f,8));
-        barEntriesArrayList.add(new BarEntry(4f,4));
-        barEntriesArrayList.add(new BarEntry(5f,0));
-        barEntriesArrayList.add(new BarEntry(6f,0));
-        barEntriesArrayList.add(new BarEntry(7f,0));
+        barEntriesArrayList.add(new BarEntry(1f,monCount));
+        barEntriesArrayList.add(new BarEntry(2f,tueCount));
+        barEntriesArrayList.add(new BarEntry(3f,wedCount));
+        barEntriesArrayList.add(new BarEntry(4f,thuCount));
+        barEntriesArrayList.add(new BarEntry(5f,friCount));
+        barEntriesArrayList.add(new BarEntry(6f,satCount));
+        barEntriesArrayList.add(new BarEntry(7f,sunCount));
     }
 
 }

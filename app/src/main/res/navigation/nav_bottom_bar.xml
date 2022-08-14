@@ -28,7 +28,7 @@
         tools:layout="@layout/activity_home_dashboard_fragment" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="iss.team6.android.UserprofileActivity"
+        android:name="iss.team6.android.UserProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/activity_userprofile"/>
+        tools:layout="@layout/fragment_userprofile"/>
 </navigation>
