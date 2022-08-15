@@ -27,6 +27,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDate;
+import java.time.temporal.WeekFields;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
 
     Intent intent = null;
@@ -36,17 +40,11 @@ public class MainActivity extends AppCompatActivity {
     View fragmentContainer;
     private static final int REQUEST_CODE = 100;
     CallbackManager callbackManager;
-    static final String apiendpoint = "https://filesamples.com/samples/code/json/sample2.json";
-    String username = "";
-    int min = 50;
-    int max = 100;
-
+    String username;
     int glassCount;
     int metalCount;
     int plasticCount;
     int paperCount;
-    String url = apiendpoint + username;
-    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.homeFragment:
                     getDayCount();
-                    Toast.makeText(this, "Refreshing stats", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Refreshing", Toast.LENGTH_SHORT).show();
                     replaceFragment(new HomeDashboardFragment());
                     break;
                 case R.id.mapFragment:
@@ -103,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.statsFragment:
                     getTypeCount();
                     replaceFragment(new StatsFragment());
-                    Toast.makeText(this, "Refreshing Stats", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Refreshing", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.profileFragment:
                     replaceFragment(new UserProfileFragment());
@@ -147,28 +145,41 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                //int monCount = (int)Math.floor(Math.random()*(max-min+1)+min);
-                int tueCount= (int)Math.floor(Math.random()*(max-min+1)+min);;
-                int wedCount= (int)Math.floor(Math.random()*(max-min+1)+min);;
-                int thuCount= (int)Math.floor(Math.random()*(max-min+1)+min);;
-                int friCount= (int)Math.floor(Math.random()*(max-min+1)+min);;
-                int satCount= (int)Math.floor(Math.random()*(max-min+1)+min);;
-                int sunCount= (int)Math.floor(Math.random()*(max-min+1)+min);;
+                Locale locale = new Locale("EN", "SG");
+                int weekOfYear = LocalDate
+                        .now()
+                        .get(WeekFields.of(locale).weekOfYear());
+                LocalDate firstDayofWeek = LocalDate
+                        .now()
+                        .with(WeekFields.of(locale).getFirstDayOfWeek())
+                        .with(WeekFields.of(locale).weekOfWeekBasedYear(), weekOfYear);
+                //Populating hashmap of weekly statistics
+
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                final String apiendpoint = "https://filesamples.com/samples/code/json/sample2.json";
-                JsonObjectRequest jsonOjectRequest = new JsonObjectRequest(Request.Method.GET, apiendpoint, null, new Response.Listener<JSONObject>() {
+                username = getSharedPreferences("user_credentials", Context.MODE_PRIVATE).getString("username", username);
+                String url = "localhost:8080/api/weeklyuserstats?username=";
+                url += username;
+                JsonObjectRequest jsonOjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            int monCount = response.getInt("age");
-                            String abc = response.getString("firstName");
-//                            tueCount = response.getInt("age");
-//                            wedCount = response.getInt("age");
-//                            thuCount = response.getInt("age");
-//                            friCount = response.getInt("age");
-//                            satCount = response.getInt("age");
-//                            sunCount = response.getInt("age");
-                            Toast.makeText(MainActivity.this, abc + monCount , Toast.LENGTH_SHORT).show();
+                            int [] weekDay = new int [7];
+                            for (int i = 1; i < 8; i++) {
+                                LocalDate currentDay = firstDayofWeek.plusDays(i);
+                                weekDay[i] = response.getJSONObject(currentDay.toString()).getInt("metalTypeCount") +
+                                        response.getJSONObject(currentDay.toString()).getInt("glassTypeCount") +
+                                        response.getJSONObject(currentDay.toString()).getInt("paperTypeCount") +
+                                        response.getJSONObject(currentDay.toString()).getInt("plasticTypeCount");
+                            }
+                            int monCount = weekDay[1];
+                            int tueCount = weekDay[2];
+                            int wedCount = weekDay[3];
+                            int thuCount = weekDay[4];
+                            int friCount = weekDay[5];
+                            int satCount = weekDay[6];
+                            int sunCount = weekDay[7];
+
+                            Toast.makeText(MainActivity.this, "test" , Toast.LENGTH_SHORT).show();
                             SharedPreferences pref = getSharedPreferences("dayCount", MODE_PRIVATE);
                             SharedPreferences.Editor editor = pref.edit();
                             editor.putInt("monCount", monCount);
@@ -179,6 +190,14 @@ public class MainActivity extends AppCompatActivity {
                             editor.putInt("satCount", satCount);
                             editor.putInt("sunCount", sunCount);
                             editor.apply();
+                            monCount = pref.getInt("monCount", monCount);
+                            pref.getInt("tueCount", tueCount);
+                            pref.getInt("wedCount", wedCount);
+                            pref.getInt("thuCount", thuCount);
+                            pref.getInt("friCount", friCount);
+                            pref.getInt("satCount", satCount);
+                            pref.getInt("sunCount", sunCount);
+
                             replaceFragment(new HomeDashboardFragment());
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -199,24 +218,18 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                glassCount = (int)Math.floor(Math.random()*(max-min+1)+min);
-                metalCount= (int)Math.floor(Math.random()*(max-min+1)+min);;
-                plasticCount= (int)Math.floor(Math.random()*(max-min+1)+min);;
-                paperCount= (int)Math.floor(Math.random()*(max-min+1)+min);;
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                final String apiendpoint = "https://filesamples.com/samples/code/json/sample2.json";
-                JsonObjectRequest jsonOjectRequest = new JsonObjectRequest(Request.Method.GET, apiendpoint, null, new Response.Listener<JSONObject>() {
+                username = getSharedPreferences("user_credentials", Context.MODE_PRIVATE).getString("username", username);
+                String url = "localhost:8080/api/alluserstats?username=";
+                url += username;
+                JsonObjectRequest jsonOjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            glassCount = response.getInt("age");
-                            String abc = response.getString("firstName");
-//                            tueCount = response.getInt("age");
-//                            wedCount = response.getInt("age");
-//                            thuCount = response.getInt("age");
-//                            friCount = response.getInt("age");
-//                            satCount = response.getInt("age");
-//                            sunCount = response.getInt("age");
+                            glassCount = response.getJSONObject(username).getInt("glassTypeCount");
+                            metalCount = response.getJSONObject(username).getInt("metalTypeCount");
+                            paperCount = response.getJSONObject(username).getInt("paperTypeCount");
+                            plasticCount = response.getJSONObject(username).getInt("plasticTypeCount");
                             //Toast.makeText(MainActivity.this, abc + glassCount , Toast.LENGTH_SHORT).show();
                             SharedPreferences pref = getSharedPreferences("trashTypeCount", MODE_PRIVATE);
                             SharedPreferences.Editor editor = pref.edit();

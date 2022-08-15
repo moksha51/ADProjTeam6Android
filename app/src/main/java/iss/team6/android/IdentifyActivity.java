@@ -46,9 +46,8 @@ public class IdentifyActivity extends AppCompatActivity {
     int metalCount;
     int paperCount;
     int plasticCount;
-    int points;
+    int points = 10;
     String className;
-    String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +74,7 @@ public class IdentifyActivity extends AppCompatActivity {
         returnBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(IdentifyActivity.this, CameraActivity.class);
+                Intent intent=new Intent(IdentifyActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -124,47 +123,47 @@ public class IdentifyActivity extends AppCompatActivity {
                 }
             }
             System.out.println(maxScoreIdx);
-            className = ImageNetClasses.IMAGENET_CLASSES[maxScoreIdx];
+            className = ImageNetClasses.IMAGENET_CLASSES[maxScoreIdx].toUpperCase();
 
             // showing className on UI
             TextView textView = findViewById(R.id.text);
-            textView.setText(className);
+            textView.setText("Trashified a piece of " + className);
             //showImage(imagePath);
             c.close();
 
             SharedPreferences pref = getSharedPreferences("trashTypeCount", Context.MODE_PRIVATE);
-            if (className.toLowerCase().contains("glass")) {
+            if (className.toUpperCase().contains("GLASS")) {
                 glassCount = pref.getInt("glassCount", glassCount);
                 glassCount++;
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("glassCount", glassCount);
                 editor.apply();
                 Toast.makeText(this, "Glass Count Updated", Toast.LENGTH_SHORT).show();
-                postDataUsingVolley("glass", points, "glass", user);
-            } else if (className.toLowerCase().contains("metal")) {
+                //postDataUsingVolley("glass", points, "glass", user);
+            } else if (className.toUpperCase().contains("METAL")) {
                 metalCount = pref.getInt("metalCount", metalCount);
                 metalCount++;
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("metalCount", metalCount);
                 editor.apply();
                 Toast.makeText(this, "Metal Count Updated", Toast.LENGTH_SHORT).show();
-                postDataUsingVolley("metal", points, "metal", user);
-            } else if (className.toLowerCase().contains("paper")) {
+                //postDataUsingVolley("metal", points, "metal", user);
+            } else if (className.toUpperCase().contains("PAPER")) {
                 paperCount = pref.getInt("paperCount", paperCount);
                 paperCount++;
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("paperCount", paperCount);
                 editor.apply();
                 Toast.makeText(this, "Paper Count Updated", Toast.LENGTH_SHORT).show();
-                postDataUsingVolley("paper", points, "paper", user);
-            } else if (className.toLowerCase().contains("plastic")) {
+                //postDataUsingVolley("paper", points, "paper", user);
+            } else if (className.toUpperCase().contains("PLASTIC")) {
                 plasticCount = pref.getInt("plasticCount", plasticCount);
                 plasticCount++;
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("plasticCount", plasticCount);
                 editor.apply();
                 Toast.makeText(this, "Plastic Count Updated", Toast.LENGTH_SHORT).show();
-                postDataUsingVolley("plastic", points, "plastic", user);
+                //postDataUsingVolley("plastic", points, "plastic", user);
             } else {
                 Toast.makeText(this, "Try again!", Toast.LENGTH_SHORT).show();
             }
@@ -221,7 +220,6 @@ public class IdentifyActivity extends AppCompatActivity {
                 params.put("desription", description);
                 params.put("points", String.valueOf(points));
                 params.put("trashType", trashType);
-                params.put("user", user);
                 return params;
             }
         };
