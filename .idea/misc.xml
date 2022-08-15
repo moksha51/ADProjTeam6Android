@@ -37,6 +37,7 @@
         <entry key="app/src/main/res/layout/activity_changeprofile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.3072916666666667" />
         <entry key="app/src/main/res/layout/activity_home_dashboard_fragment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_identify.xml" value="0.36041666666666666" />
         <entry key="app/src/main/res/layout/activity_leaderboard.xml" value="0.3072916666666667" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.184375" />
         <entry key="app/src/main/res/layout/activity_login_fragment.xml" value="0.19479166666666667" />

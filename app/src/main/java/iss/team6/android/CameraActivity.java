@@ -2,7 +2,6 @@ package iss.team6.android;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -25,18 +24,8 @@ import androidx.camera.view.PreviewView;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.common.util.concurrent.ListenableFuture;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 
@@ -162,80 +151,8 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
             }
         );
     }
-
     private void trashify() {
-        Intent selectImageIntent = new Intent(Intent.ACTION_PICK);
-        selectImageIntent.setType("image/*");
-        startActivityForResult(selectImageIntent, SELECT_PICTURE);
-
-        pref = getSharedPreferences("trashTypeCount", Context.MODE_PRIVATE);
-        if (trashType.toLowerCase().contains("glass")) {
-            glassCount = pref.getInt("glassCount", glassCount);
-            glassCount++;
-            SharedPreferences.Editor editor = pref.edit();
-            editor.putInt("glassCount", glassCount);
-            editor.apply();
-            Toast.makeText(this, "Count Updated", Toast.LENGTH_SHORT).show();
-            postDataUsingVolley("glass", points, "glass", user);
-        } else if (trashType.toLowerCase().contains("metal")) {
-            metalCount = pref.getInt("metalCount", metalCount);
-            metalCount++;
-            SharedPreferences.Editor editor = pref.edit();
-            editor.putInt("metalCount", metalCount);
-            editor.apply();
-            Toast.makeText(this, "Count Updated", Toast.LENGTH_SHORT).show();
-            postDataUsingVolley("metal", points, "metal", user);
-        } else if (trashType.toLowerCase().contains("paper")) {
-            paperCount = pref.getInt("paperCount", paperCount);
-            paperCount++;
-            SharedPreferences.Editor editor = pref.edit();
-            editor.putInt("paperCount", paperCount);
-            editor.apply();
-            Toast.makeText(this, "Count Updated", Toast.LENGTH_SHORT).show();
-            postDataUsingVolley("paper", points, "paper", user);
-        } else if (trashType.toLowerCase().contains("plastic")) {
-            plasticCount = pref.getInt("plasticCount", plasticCount);
-            plasticCount++;
-            SharedPreferences.Editor editor = pref.edit();
-            editor.putInt("plasticCount", plasticCount);
-            editor.apply();
-            Toast.makeText(this, "Count Updated", Toast.LENGTH_SHORT).show();
-            postDataUsingVolley("plastic", points, "plastic", user);
-        } else {
-            Toast.makeText(this, "Try again!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void postDataUsingVolley(String description, int points, String trashType, String user) {
-        String url = "https://reqres.in/api/users";
-        RequestQueue queue = Volley.newRequestQueue(CameraActivity.this);
-        StringRequest request = new StringRequest(Request.Method.POST, apiendpoint, new com.android.volley.Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(CameraActivity.this, "Data added to API", Toast.LENGTH_SHORT).show();
-                try {
-                    JSONObject respObj = new JSONObject(response);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new com.android.volley.Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // method to handle errors.
-                Toast.makeText(CameraActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("desription", description);
-                params.put("points", String.valueOf(points));
-                params.put("trashType", trashType);
-                params.put("user", user);
-                return params;
-            }
-        };
-        queue.add(request);
+        Intent intent = new Intent(CameraActivity.this, IdentifyActivity.class);
+        startActivity(intent);
     }
 }

@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
 //                            friCount = response.getInt("age");
 //                            satCount = response.getInt("age");
 //                            sunCount = response.getInt("age");
-                            //Toast.makeText(MainActivity.this, abc + monCount , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, abc + monCount , Toast.LENGTH_SHORT).show();
                             SharedPreferences pref = getSharedPreferences("dayCount", MODE_PRIVATE);
                             SharedPreferences.Editor editor = pref.edit();
                             editor.putInt("monCount", monCount);
