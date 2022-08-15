@@ -37,31 +37,35 @@ public class LoginActivity extends AppCompatActivity {
         //For Facebook login
         callbackManager = CallbackManager.Factory.create();
 
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        if (accessToken != null && accessToken.isExpired() == false) {
-            startProtectedActivity();
-            finish();
-        }
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        startProtectedActivity();
+                        finish();
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        // App code
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        // App code
+                    }
+                });
 
 
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                startProtectedActivity();
-                finish();
-            }
 
-            @Override
-            public void onCancel() {
-                // App code
-            }
+//        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+//        if (accessToken != null && accessToken.isExpired() == false) {
+//            startProtectedActivity();
+//            finish();
+//        }
 
-            @Override
-            public void onError(FacebookException exception) {
-                // App code
-            }
-        });
         // For Facebook Login
+
 
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
