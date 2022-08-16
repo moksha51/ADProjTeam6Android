@@ -32,6 +32,7 @@ public class StatsFragment extends Fragment {
     String url = "https://www.healthhub.sg/programmes/182/healthhub-rewards/faq";
     TextView rewards_textview_count_glass, rewards_textview_count_metal, rewards_textview_count_paper,rewards_textview_count_plastic;
 
+    //tezt
 
     public StatsFragment() {
         // Required empty public constructor

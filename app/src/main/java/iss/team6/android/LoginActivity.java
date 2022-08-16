@@ -43,20 +43,15 @@ public class LoginActivity extends AppCompatActivity {
                         startProtectedActivity();
                         finish();
                     }
-
                     @Override
                     public void onCancel() {
-                        // App code
+                        Toast.makeText(LoginActivity.this, "Try logging into Facebook again", Toast.LENGTH_SHORT).show();
                     }
-
                     @Override
                     public void onError(FacebookException exception) {
-                        // App code
+                        Toast.makeText(LoginActivity.this, "Try logging into Facebook again", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
-
 //        AccessToken accessToken = AccessToken.getCurrentAccessToken();
 //        if (accessToken != null && accessToken.isExpired() == false) {
 //            startProtectedActivity();
@@ -64,8 +59,6 @@ public class LoginActivity extends AppCompatActivity {
 //        }
 
         // For Facebook Login
-
-
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         fblogin = findViewById(R.id.fblogin);

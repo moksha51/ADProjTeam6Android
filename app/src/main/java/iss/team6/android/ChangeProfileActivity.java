@@ -51,7 +51,7 @@ public class ChangeProfileActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putString("username", newusername);
                     editor.putString("password", newpassword);
-                    editor.apply();
+                    editor.commit();
                     finish();
                     Toast.makeText(ChangeProfileActivity.this, "Userprofile updated successfully!", Toast.LENGTH_SHORT).show();
                     startProtectedActivity();

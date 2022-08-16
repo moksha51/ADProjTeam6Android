@@ -41,6 +41,13 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 100;
     CallbackManager callbackManager;
     String username;
+    int monCount;
+    int tueCount;
+    int wedCount;
+    int thuCount;
+    int friCount;
+    int satCount;
+    int sunCount;
     int glassCount;
     int metalCount;
     int plasticCount;
@@ -156,32 +163,50 @@ public class MainActivity extends AppCompatActivity {
                 //Populating hashmap of weekly statistics
 
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                username = getSharedPreferences("user_credentials", Context.MODE_PRIVATE).getString("username", username);
+                //username "Halim" is hardcoded in case API endpoint is no longer in service
+                username = "Halim";
+                //uncomment below code to test API endpint
+                //username = getSharedPreferences("user_credentials", Context.MODE_PRIVATE).getString("username", username);
                 String url = "localhost:8080/api/weeklyuserstats?username=";
                 url += username;
+
                 JsonObjectRequest jsonOjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            int [] weekDay = new int [7];
-                            for (int i = 1; i < 8; i++) {
-                                LocalDate currentDay = firstDayofWeek.plusDays(i);
-                                weekDay[i] = response.getJSONObject(currentDay.toString()).getInt("metalTypeCount") +
-                                        response.getJSONObject(currentDay.toString()).getInt("glassTypeCount") +
-                                        response.getJSONObject(currentDay.toString()).getInt("paperTypeCount") +
-                                        response.getJSONObject(currentDay.toString()).getInt("plasticTypeCount");
-                            }
-                            int monCount = weekDay[1];
-                            int tueCount = weekDay[2];
-                            int wedCount = weekDay[3];
-                            int thuCount = weekDay[4];
-                            int friCount = weekDay[5];
-                            int satCount = weekDay[6];
-                            int sunCount = weekDay[7];
+//                            int [] weekDay = new int [7];
+//                            for (int i = 1; i < 8; i++) {
+//                                LocalDate currentDay = firstDayofWeek.plusDays(i);
+//                                weekDay[i] = response.getJSONObject(currentDay.toString()).getInt("metalTypeCount") +
+//                                        response.getJSONObject(currentDay.toString()).getInt("glassTypeCount") +
+//                                        response.getJSONObject(currentDay.toString()).getInt("paperTypeCount") +
+//                                        response.getJSONObject(currentDay.toString()).getInt("plasticTypeCount");
+//                            }
+//                            monCount = weekDay[1];
+//                            tueCount = weekDay[2];
+//                            wedCount = weekDay[3];
+//                            thuCount = weekDay[4];
+//                            friCount = weekDay[5];
+//                            satCount = weekDay[6];
+//                            sunCount = weekDay[7];
+
+                            //hardcoding below values in case API endpoint is no longer in service
+
+                            response.getJSONObject("");
+
+                            monCount = 100;
+                            tueCount = 90;
+                            wedCount = 80;
+                            thuCount = 70;
+                            friCount = 60;
+                            satCount = 50;
+                            sunCount = 40;
 
                             Toast.makeText(MainActivity.this, "test" , Toast.LENGTH_SHORT).show();
                             SharedPreferences pref = getSharedPreferences("dayCount", MODE_PRIVATE);
                             SharedPreferences.Editor editor = pref.edit();
+                            //Dear Tin, putting into SharedPreferences so that user can view stats without internet.
+
                             editor.putInt("monCount", monCount);
                             editor.putInt("tueCount", tueCount);
                             editor.putInt("wedCount", wedCount);
@@ -190,14 +215,6 @@ public class MainActivity extends AppCompatActivity {
                             editor.putInt("satCount", satCount);
                             editor.putInt("sunCount", sunCount);
                             editor.apply();
-                            monCount = pref.getInt("monCount", monCount);
-                            pref.getInt("tueCount", tueCount);
-                            pref.getInt("wedCount", wedCount);
-                            pref.getInt("thuCount", thuCount);
-                            pref.getInt("friCount", friCount);
-                            pref.getInt("satCount", satCount);
-                            pref.getInt("sunCount", sunCount);
-
                             replaceFragment(new HomeDashboardFragment());
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -219,18 +236,29 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                username = getSharedPreferences("user_credentials", Context.MODE_PRIVATE).getString("username", username);
+                //username "Halim" is hardcoded in case API endpoint is no longer in service
+                username = "Halim";
+                //uncomment below code to test API endpint
+                //username = getSharedPreferences("user_credentials", Context.MODE_PRIVATE).getString("username", username);
                 String url = "localhost:8080/api/alluserstats?username=";
                 url += username;
                 JsonObjectRequest jsonOjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            glassCount = response.getJSONObject(username).getInt("glassTypeCount");
-                            metalCount = response.getJSONObject(username).getInt("metalTypeCount");
-                            paperCount = response.getJSONObject(username).getInt("paperTypeCount");
-                            plasticCount = response.getJSONObject(username).getInt("plasticTypeCount");
-                            //Toast.makeText(MainActivity.this, abc + glassCount , Toast.LENGTH_SHORT).show();
+//                            glassCount = response.getJSONObject(username).getInt("glassTypeCount");
+//                            metalCount = response.getJSONObject(username).getInt("metalTypeCount");
+//                            paperCount = response.getJSONObject(username).getInt("paperTypeCount");
+//                            plasticCount = response.getJSONObject(username).getInt("plasticTypeCount");
+                            response.getJSONObject("");
+
+//                            hardcoding below values in case API endpoint is no longer in service
+                            glassCount = 100;
+                            metalCount = 90;
+                            paperCount = 80;
+                            plasticCount = 70;
+
+                        //Dear Tin, putting into SharedPreferences so that user can view stats without internet.
                             SharedPreferences pref = getSharedPreferences("trashTypeCount", MODE_PRIVATE);
                             SharedPreferences.Editor editor = pref.edit();
                             editor.putInt("glassCount", glassCount);
