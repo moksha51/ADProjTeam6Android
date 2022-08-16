@@ -48,6 +48,7 @@ public class IdentifyActivity extends AppCompatActivity {
     int plasticCount;
     int points = 10;
     String className;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +70,6 @@ public class IdentifyActivity extends AppCompatActivity {
                 startActivityForResult(intent, 200);
             }
         });
-
 
         Button returnBtn=findViewById(R.id.returnBtn);
         returnBtn.setOnClickListener(new View.OnClickListener() {
@@ -199,8 +199,16 @@ public class IdentifyActivity extends AppCompatActivity {
         }
     }
 
-    private void postDataUsingVolley(String description, int points, String trashType, String user) {
+    private void postDataUsingVolley(String description, int points, String trashType) {
+        SharedPreferences pref = getSharedPreferences("user_credentials", Context.MODE_PRIVATE);
+        pref.getString("username", username);
+
+        //hardcoded username in case API endpoint is no longer in service
+        username = "Halim";
         String url = "https://reqres.in/api/users";
+
+        url += username;
+
         RequestQueue queue = Volley.newRequestQueue(IdentifyActivity.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override
