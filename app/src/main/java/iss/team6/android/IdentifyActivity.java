@@ -130,7 +130,7 @@ public class IdentifyActivity extends AppCompatActivity {
             TextView textView = findViewById(R.id.text);
             // Dear Tin, cause NEA generalise cardboard as paper
             if (className.contains("cardboard")){
-                className = "paper";
+                textView.setText("Trashified a piece of paper");
             }
             textView.setText("Trashified a piece of " + className);
             //showImage(imagePath);
