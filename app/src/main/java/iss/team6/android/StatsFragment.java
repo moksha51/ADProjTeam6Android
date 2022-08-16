@@ -100,7 +100,6 @@ public class StatsFragment extends Fragment {
                 });
             }
         }
-
         progressBar_paper = view.findViewById(R.id.rewards_progress_bar_paper);
         btn_redeem_paper = view.findViewById(R.id.rewards_btn_redeem_paper);
         rewards_textview_count_paper = view.findViewById(R.id.rewards_textview_count_paper);

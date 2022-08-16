@@ -53,8 +53,9 @@ public class IdentifyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_identify);
-
-        Button selectbtn=findViewById(R.id.Select);
+        TextView textView = findViewById(R.id.text);
+        textView.setText("Dear User, only trash please, no hands!!");
+        Button selectbtn = findViewById(R.id.Select);
         // creating bitmap from packaged into app android asset 'image.jpg',
         // app/src/main/assets/image.jpg
 //            Intent intent=getIntent();
@@ -127,6 +128,10 @@ public class IdentifyActivity extends AppCompatActivity {
 
             // showing className on UI
             TextView textView = findViewById(R.id.text);
+            // Dear Tin, cause NEA generalise cardboard as paper
+            if (className.contains("cardboard")){
+                className = "paper";
+            }
             textView.setText("Trashified a piece of " + className);
             //showImage(imagePath);
             c.close();
@@ -148,7 +153,7 @@ public class IdentifyActivity extends AppCompatActivity {
                 editor.apply();
                 Toast.makeText(this, "Metal Count Updated", Toast.LENGTH_SHORT).show();
                 //postDataUsingVolley("metal", points, "metal", user);
-            } else if (className.toUpperCase().contains("PAPER")) {
+            } else if (className.toUpperCase().contains("PAPER") || className.toUpperCase().contains("CARDBOARD")) {
                 paperCount = pref.getInt("paperCount", paperCount);
                 paperCount++;
                 SharedPreferences.Editor editor = pref.edit();
@@ -165,7 +170,7 @@ public class IdentifyActivity extends AppCompatActivity {
                 Toast.makeText(this, "Plastic Count Updated", Toast.LENGTH_SHORT).show();
                 //postDataUsingVolley("plastic", points, "plastic", user);
             } else {
-                Toast.makeText(this, "Try again!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Try a new photo! Or this is under general trash!", Toast.LENGTH_SHORT).show();
             }
         }
     }

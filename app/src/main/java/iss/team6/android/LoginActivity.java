@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -37,31 +36,35 @@ public class LoginActivity extends AppCompatActivity {
         //For Facebook login
         callbackManager = CallbackManager.Factory.create();
 
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        if (accessToken != null && accessToken.isExpired() == false) {
-            startProtectedActivity();
-            finish();
-        }
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        startProtectedActivity();
+                        finish();
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        // App code
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        // App code
+                    }
+                });
 
 
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                startProtectedActivity();
-                finish();
-            }
 
-            @Override
-            public void onCancel() {
-                // App code
-            }
+//        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+//        if (accessToken != null && accessToken.isExpired() == false) {
+//            startProtectedActivity();
+//            finish();
+//        }
 
-            @Override
-            public void onError(FacebookException exception) {
-                // App code
-            }
-        });
         // For Facebook Login
+
 
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
@@ -134,8 +137,8 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
         pref.getString("username", username);
         pref.getString("password", password);
-        //"Goodmorning" and "Singapore" below should be equals to JSON object database username and password
-        if (username.equals("GM") && password.equals("SG")) {
+        //Tin, hardcoded for your username and passworf for your convenience
+        if (username.equals("Halim") && password.equals("halim")) {
             return true;
         }
         return false;
@@ -163,5 +166,3 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
-
-
