@@ -24,9 +24,11 @@ public class LoginActivity extends AppCompatActivity {
     Button login;
     Button createaccount;
     Button fblogin;
-    EditText username;
-    EditText password;
+    EditText ETusername;
+    EditText ETpassword;
     CallbackManager callbackManager;
+    String usernameText;
+    String passwordText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +61,8 @@ public class LoginActivity extends AppCompatActivity {
 //        }
 
         // For Facebook Login
-        username = findViewById(R.id.username);
-        password = findViewById(R.id.password);
+        ETusername = findViewById(R.id.username);
+        ETpassword = findViewById(R.id.password);
         fblogin = findViewById(R.id.fblogin);
         login = findViewById(R.id.login);
         createaccount = findViewById(R.id.createaccount);
@@ -76,15 +78,15 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Username = username.getText().toString();
-                String Password = password.getText().toString();
+                usernameText = ETusername.getText().toString();
+                passwordText = ETpassword.getText().toString();
 
-                boolean loginOk = logIn(Username, Password);
+                boolean loginOk = logIn(usernameText, passwordText);
                 if (loginOk) {
                     SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();
-                    editor.putString("username", Username);
-                    editor.putString("password", Password);
+                    editor.putString("username", usernameText);
+                    editor.putString("password", passwordText);
                     editor.commit();
                     finish();
 
@@ -99,15 +101,15 @@ public class LoginActivity extends AppCompatActivity {
         createaccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Username = username.getText().toString();
-                String Password = password.getText().toString();
+                usernameText = ETusername.getText().toString();
+                passwordText = ETpassword.getText().toString();
 
-                boolean createOk = createAcct(Username, Password);
+                boolean createOk = createAcct(usernameText, passwordText);
                 if (createOk) {
                     SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();
-                    editor.putString("username", Username);
-                    editor.putString("password", Password);
+                    editor.putString("username", usernameText);
+                    editor.putString("password", passwordText);
                     editor.commit();
                     finish();
 
@@ -126,28 +128,35 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private boolean logIn(String username, String password) {
+    private boolean logIn(String usernameText, String passwordText) {
         SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
-        pref.getString("username", username);
-        pref.getString("password", password);
-        //Tin, hardcoded for your username and passworf for your convenience
-        if (username.equals("Halim") && password.equals("halim")) {
-            return true;
+        pref.getString("username", usernameText);
+        pref.getString("password", passwordText);
+        //Tin, hardcoded for your username and password for your convenience
+
+        if (usernameText.equals("GM1") || usernameText.equals("Halim"))
+        {
+            if (passwordText.equals("SG1") || passwordText.equals("halim")){
+                return true;
+            }
         }
         return false;
     }
 
-    private boolean createAcct(String username, String password) {
-        if (username.equals("Goodmorning") && password.equals("Singapore")) {
+    private boolean createAcct(String usernameText, String passwordText) {
+        usernameText = ETusername.getText().toString();
+        passwordText = ETpassword.getText().toString();
+        try {
+            SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString("username", usernameText);
+            editor.putString("password", passwordText);
             return true;
         }
-        return false;
-        //Need to write method to create acct in database. Not sure how cos no database?
-//     private boolean createAcct(String username, String password) {
-//         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-//         String email_id = email.getText().toString();
-//         boolean dbHelper.isExist(email_id);
-//     }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
