@@ -18,13 +18,9 @@ import com.facebook.login.LoginManager;
 
 public class UserProfileFragment extends Fragment {
 
-
-
     public UserProfileFragment() {
         // Required empty public constructor
     }
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +65,6 @@ public class UserProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
         return view;
     }
 }
