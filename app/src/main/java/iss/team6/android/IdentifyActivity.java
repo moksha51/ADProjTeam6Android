@@ -20,8 +20,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -37,8 +38,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.HashMap;
-import java.util.Map;
 
 public class IdentifyActivity extends AppCompatActivity {
 
@@ -46,7 +45,7 @@ public class IdentifyActivity extends AppCompatActivity {
     int metalCount;
     int paperCount;
     int plasticCount;
-    int points = 10;
+    Integer points = 10;
     String className;
     String username;
 
@@ -129,46 +128,43 @@ public class IdentifyActivity extends AppCompatActivity {
             // showing className on UI
             TextView textView = findViewById(R.id.text);
             // Dear Tin, cause NEA generalise cardboard as paper
-            if (className.contains("cardboard")){
+            if (className.toUpperCase().contains("CARDBOARD")){
                 textView.setText("Trashified a piece of paper");
+            } else {
+                textView.setText("Trashified a piece of " + className);
             }
-            textView.setText("Trashified a piece of " + className);
             //showImage(imagePath);
             c.close();
 
             SharedPreferences pref = getSharedPreferences("trashTypeCount", Context.MODE_PRIVATE);
             if (className.toUpperCase().contains("GLASS")) {
                 glassCount = pref.getInt("glassCount", glassCount);
-                glassCount++;
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("glassCount", glassCount);
                 editor.apply();
                 Toast.makeText(this, "Glass Count Updated", Toast.LENGTH_SHORT).show();
-                //postDataUsingVolley("glass", points, "glass", user);
+                postDataUsingVolley("glass", points, "GLASS");
             } else if (className.toUpperCase().contains("METAL")) {
                 metalCount = pref.getInt("metalCount", metalCount);
-                metalCount++;
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("metalCount", metalCount);
                 editor.apply();
                 Toast.makeText(this, "Metal Count Updated", Toast.LENGTH_SHORT).show();
-                //postDataUsingVolley("metal", points, "metal", user);
+                postDataUsingVolley("metal", points, "METAL");
             } else if (className.toUpperCase().contains("PAPER") || className.toUpperCase().contains("CARDBOARD")) {
                 paperCount = pref.getInt("paperCount", paperCount);
-                paperCount++;
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("paperCount", paperCount);
                 editor.apply();
                 Toast.makeText(this, "Paper Count Updated", Toast.LENGTH_SHORT).show();
-                //postDataUsingVolley("paper", points, "paper", user);
+                postDataUsingVolley("paper", points, "PAPER");
             } else if (className.toUpperCase().contains("PLASTIC")) {
                 plasticCount = pref.getInt("plasticCount", plasticCount);
-                plasticCount++;
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putInt("plasticCount", plasticCount);
                 editor.apply();
                 Toast.makeText(this, "Plastic Count Updated", Toast.LENGTH_SHORT).show();
-                //postDataUsingVolley("plastic", points, "plastic", user);
+                postDataUsingVolley("plastic", points, "PLASTIC");
             } else {
                 Toast.makeText(this, "Try a new photo! Or this is under general trash!", Toast.LENGTH_SHORT).show();
             }
@@ -205,37 +201,32 @@ public class IdentifyActivity extends AppCompatActivity {
 
         //hardcoded username in case API endpoint is no longer in service
         username = "Halim";
-        String url = "https://reqres.in/api/users";
-
-        url += username;
+        String url = "http://167.71.201.46:6868/api/createactivity?username=Halim";
 
         RequestQueue queue = Volley.newRequestQueue(IdentifyActivity.this);
-        StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
+
+        JSONObject postData = new JSONObject();
+        try {
+            postData.put("description", description);
+            postData.put("points", String.valueOf(points));
+            postData.put("trashType", trashType);
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(JSONObject response) {
                 Toast.makeText(IdentifyActivity.this, "Data added to API", Toast.LENGTH_SHORT).show();
-                try {
-                    JSONObject respObj = new JSONObject(response);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
             }
         }, new com.android.volley.Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 // method to handle errors.
-                Toast.makeText(IdentifyActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(IdentifyActivity.this, "", Toast.LENGTH_LONG).show();
             }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("desription", description);
-                params.put("points", String.valueOf(points));
-                params.put("trashType", trashType);
-                return params;
-            }
-        };
+        });
         queue.add(request);
     }
 }
