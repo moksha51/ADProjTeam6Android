@@ -47,7 +47,7 @@ public class IdentifyActivity extends AppCompatActivity {
     int plasticCount;
     Integer points = 10;
     String className;
-    String username;
+    String username = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -197,11 +197,14 @@ public class IdentifyActivity extends AppCompatActivity {
 
     private void postDataUsingVolley(String description, int points, String trashType) {
         SharedPreferences pref = getSharedPreferences("user_credentials", Context.MODE_PRIVATE);
-        pref.getString("username", username);
+        String usernameText = pref.getString("username", username);
 
-        //hardcoded username in case API endpoint is no longer in service
-        username = "Halim";
         String url = "http://167.71.201.46:6868/api/createactivity?username=Halim";
+
+        //hardcoded endpoint for convenience
+        //can change Halim to Heily or Yeemon etc depending on who logged in
+        //url += usernameText;
+
 
         RequestQueue queue = Volley.newRequestQueue(IdentifyActivity.this);
 

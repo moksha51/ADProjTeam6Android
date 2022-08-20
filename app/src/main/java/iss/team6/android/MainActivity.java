@@ -40,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
     View fragmentContainer;
     private static final int REQUEST_CODE = 100;
     CallbackManager callbackManager;
-    String username;
+    String username = "";
+    String usernameText = "";
     int monCount;
     int tueCount;
     int wedCount;
@@ -150,8 +151,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getDayCount(){
-
-
         //Dear Tin, putting into SharedPreferences so that user can view stats without internet.
         SharedPreferences pref = getSharedPreferences("dayCount", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
@@ -171,15 +170,14 @@ public class MainActivity extends AppCompatActivity {
                         .with(WeekFields.of(locale).weekOfWeekBasedYear(), weekOfYear);
 
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                //username "Halim" is hardcoded in case API endpoint is no longer in service
-                username = "Halim";
 
                 //uncomment below code to test API endpint
-                //username = getSharedPreferences("user_credentials", Context.MODE_PRIVATE).getString("username", username);
-
+                //usernameText = getSharedPreferences("user_credentials", Context.MODE_PRIVATE).getString("username", username);
                 String url = "http://167.71.201.46:6868/api/weeklyuserstats?username=Halim";
 
-                //url += username;
+                //hardcoded endpoint for convenience
+                //can change Halim to Heily or Yeemon etc depending on who logged in
+                //url += usernameText;
 
                 JsonObjectRequest jsonOjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
@@ -200,6 +198,8 @@ public class MainActivity extends AppCompatActivity {
                             friCount = weekDay[5];
                             satCount = weekDay[6];
                             sunCount = weekDay[0];
+
+                            //Dear Tin, putting into SharedPreferences so that user can view stats without internet.
 
                             editor.putInt("monCount", monCount);
                             editor.putInt("tueCount", tueCount);
@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
                 queue.add(jsonOjectRequest);
             }
         }).start();
-        //Dear Tin, putting into SharedPreferences so that user can view stats without internet.
+
 
     }
 
@@ -242,13 +242,15 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
 
-                //username "Halim" is hardcoded in case API endpoint is no longer in service
-                username = "Halim";
-
                 //uncomment below code to test API endpint
-                //username = getSharedPreferences("user_credentials", Context.MODE_PRIVATE).getString("username", username);
-                String url = "http://167.71.201.46:6868/api/dailyuserstats?username=Halim";
-                //url += username;
+                //usernameText = getSharedPreferences("user_credentials", Context.MODE_PRIVATE).getString("username", username);
+
+                String url = "http://167.71.201.46:6868/api/alluserstats?username=Halim";
+
+                //hardcoded endpoint for convenience
+                //can change Halim to Heily or Yeemon etc depending on who logged in
+                //url += usernameText;
+
                 JsonObjectRequest jsonOjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -265,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
                             editor.putInt("plasticCount", plasticCount);
                             editor.commit();
                             replaceFragment(new StatsFragment());
-                        } catch (JSONException e) {
+                        } catch (JSONException e)  {
                             e.printStackTrace();
                         }
                     }
