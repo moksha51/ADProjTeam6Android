@@ -40,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
     View fragmentContainer;
     private static final int REQUEST_CODE = 100;
     CallbackManager callbackManager;
-    String username;
+    String username = "";
+    String usernameText = "";
     int monCount;
     int tueCount;
     int wedCount;
@@ -87,19 +88,7 @@ public class MainActivity extends AppCompatActivity {
             intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
-
-        //Tin, hardcoded values in case API endpoint is no longer in service
-        glassCount = 100;
-        metalCount = 90;
-        paperCount = 80;
-        plasticCount = 70;
-        monCount = 100;
-        tueCount = 90;
-        wedCount = 80;
-        thuCount = 70;
-        friCount = 60;
-        satCount = 50;
-        sunCount = 40;
+        getDayCount();
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -162,11 +151,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getDayCount(){
-
-
         //Dear Tin, putting into SharedPreferences so that user can view stats without internet.
         SharedPreferences pref = getSharedPreferences("dayCount", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
+        editor.clear();
+        editor.commit();
 
         new Thread(new Runnable() {
             @Override
@@ -181,21 +170,21 @@ public class MainActivity extends AppCompatActivity {
                         .with(WeekFields.of(locale).weekOfWeekBasedYear(), weekOfYear);
 
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                //username "Halim" is hardcoded in case API endpoint is no longer in service
-                username = "Halim";
 
                 //uncomment below code to test API endpint
-                //username = getSharedPreferences("user_credentials", Context.MODE_PRIVATE).getString("username", username);
+                //usernameText = getSharedPreferences("user_credentials", Context.MODE_PRIVATE).getString("username", username);
+                String url = "http://167.71.201.46:6868/api/weeklyuserstats?username=Halim";
 
-                String url = "localhost:8080/api/weeklyuserstats?username=";
-                url += username;
+                //hardcoded endpoint for convenience
+                //can change Halim to Heily or Yeemon etc depending on who logged in
+                //url += usernameText;
 
                 JsonObjectRequest jsonOjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
                             int [] weekDay = new int [7];
-                            for (int i = 1; i < 8; i++) {
+                            for (int i = 0; i < 7; i++) {
                                 LocalDate currentDay = firstDayofWeek.plusDays(i);
                                 weekDay[i] = response.getJSONObject(currentDay.toString()).getInt("metalTypeCount") +
                                         response.getJSONObject(currentDay.toString()).getInt("glassTypeCount") +
@@ -208,7 +197,9 @@ public class MainActivity extends AppCompatActivity {
                             thuCount = weekDay[4];
                             friCount = weekDay[5];
                             satCount = weekDay[6];
-                            sunCount = weekDay[7];
+                            sunCount = weekDay[0];
+
+                            //Dear Tin, putting into SharedPreferences so that user can view stats without internet.
 
                             editor.putInt("monCount", monCount);
                             editor.putInt("tueCount", tueCount);
@@ -217,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
                             editor.putInt("friCount", friCount);
                             editor.putInt("satCount", satCount);
                             editor.putInt("sunCount", sunCount);
-                            editor.apply();
+                            editor.commit();
                             replaceFragment(new HomeDashboardFragment());
 
                         } catch (JSONException e) {
@@ -225,25 +216,17 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }, new Response.ErrorListener() {
+
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this, "Error loading data", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Test" + error, Toast.LENGTH_LONG).show();
                     }
                 });
                 queue.add(jsonOjectRequest);
             }
         }).start();
-        //Dear Tin, putting into SharedPreferences so that user can view stats without internet.
 
-        editor.putInt("monCount", monCount);
-        editor.putInt("tueCount", tueCount);
-        editor.putInt("wedCount", wedCount);
-        editor.putInt("thuCount", thuCount);
-        editor.putInt("friCount", friCount);
-        editor.putInt("satCount", satCount);
-        editor.putInt("sunCount", sunCount);
-        editor.apply();
-        replaceFragment(new HomeDashboardFragment());
+
     }
 
     public void getTypeCount(){
@@ -251,38 +234,40 @@ public class MainActivity extends AppCompatActivity {
         //Dear Tin, putting into SharedPreferences so that user can view stats without internet.
         SharedPreferences pref = getSharedPreferences("trashTypeCount", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
+        editor.clear();
+        editor.commit();
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
 
-                //username "Halim" is hardcoded in case API endpoint is no longer in service
-                username = "Halim";
-
                 //uncomment below code to test API endpint
-                //username = getSharedPreferences("user_credentials", Context.MODE_PRIVATE).getString("username", username);
-                String url = "localhost:8080/api/alluserstats?username=";
-                url += username;
+                //usernameText = getSharedPreferences("user_credentials", Context.MODE_PRIVATE).getString("username", username);
+
+                String url = "http://167.71.201.46:6868/api/alluserstats?username=Halim";
+
+                //hardcoded endpoint for convenience
+                //can change Halim to Heily or Yeemon etc depending on who logged in
+                //url += usernameText;
+
                 JsonObjectRequest jsonOjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
 
-//                      hardcoding below values in case API endpoint is no longer in service
-
                         try {
-//                            glassCount = response.getJSONObject(username).getInt("glassTypeCount");
-//                            metalCount = response.getJSONObject(username).getInt("metalTypeCount");
-//                            paperCount = response.getJSONObject(username).getInt("paperTypeCount");
-//                            plasticCount = response.getJSONObject(username).getInt("plasticTypeCount");
-                            response.getJSONObject("");
+                            glassCount = response.getInt("glassTypeCount");
+                            metalCount = response.getInt("metalTypeCount");
+                            paperCount = response.getInt("paperTypeCount");
+                            plasticCount = response.getInt("plasticTypeCount");
+                            editor.clear();
                             editor.putInt("glassCount", glassCount);
                             editor.putInt("metalCount", metalCount);
                             editor.putInt("paperCount", paperCount);
                             editor.putInt("plasticCount", plasticCount);
-                            editor.apply();
+                            editor.commit();
                             replaceFragment(new StatsFragment());
-                        } catch (JSONException e) {
+                        } catch (JSONException e)  {
                             e.printStackTrace();
                         }
                     }
@@ -295,11 +280,5 @@ public class MainActivity extends AppCompatActivity {
                 queue.add(jsonOjectRequest);
             }
         }).start();
-        editor.putInt("glassCount", glassCount);
-        editor.putInt("metalCount", metalCount);
-        editor.putInt("paperCount", paperCount);
-        editor.putInt("plasticCount", plasticCount);
-        editor.apply();
-        replaceFragment(new HomeDashboardFragment());
     }
 }

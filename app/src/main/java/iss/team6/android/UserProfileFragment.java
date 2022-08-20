@@ -35,6 +35,11 @@ public class UserProfileFragment extends Fragment {
         Button btnlogout = view.findViewById(R.id.btnlogout);
         Button btnchangeuserprofile = view.findViewById(R.id.btnchangeuserprofile);
         TextView user = view.findViewById(R.id.user);
+        String username = "";
+        String usernameText ="";
+        SharedPreferences pref = getActivity().getSharedPreferences("user_credentials", Context.MODE_PRIVATE);
+        usernameText = pref.getString("username", username);
+        user.setText(usernameText);
 
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         Bundle parameters = new Bundle();
