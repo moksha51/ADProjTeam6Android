@@ -14,7 +14,7 @@ Trashify is an app that aims to make recycling easier (more accessible and more 
 
 ## Screenshots
 ### Home  
-![alt text](https://github.com/moksha51/ADProjTeam6Android/blob/master/app/src/main/res/drawable/Home.png)  
+![alt text](https://github.com/moksha51/ADProjTeam6Android/blob/master/app/src/main/res/drawable/Homepage.png)  
 This is the landing page when you first open up the app. You may also click on the button in the navigation bar circled in red to return to Home.  
 
 ### Map  
