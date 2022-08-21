@@ -42,17 +42,39 @@ public class MainActivity extends AppCompatActivity {
     CallbackManager callbackManager;
     String username = "";
     String usernameText = "";
-    int monCount;
-    int tueCount;
-    int wedCount;
-    int thuCount;
-    int friCount;
-    int satCount;
-    int sunCount;
+    
     int glassCount;
     int metalCount;
     int plasticCount;
     int paperCount;
+    int monCountPl;
+    int tueCountPl;
+    int wedCountPl;
+    int thuCountPl;
+    int friCountPl;
+    int satCountPl;
+    int sunCountPl;
+    int monCountGl;
+    int tueCountGl;
+    int wedCountGl;
+    int thuCountGl;
+    int friCountGl;
+    int satCountGl;
+    int sunCountGl;
+    int monCountMe;
+    int tueCountMe;
+    int wedCountMe;
+    int thuCountMe;
+    int friCountMe;
+    int satCountMe;
+    int sunCountMe;
+    int monCountPa;
+    int tueCountPa;
+    int wedCountPa;
+    int thuCountPa;
+    int friCountPa;
+    int satCountPa;
+    int sunCountPa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -182,32 +204,86 @@ public class MainActivity extends AppCompatActivity {
                 JsonObjectRequest jsonOjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try {
-                            int [] weekDay = new int [7];
+                                                try {
+                            int [] weekDayPl = new int [7];
+                            int [] weekDayGl = new int [7];
+                            int [] weekDayPa = new int [7];
+                            int [] weekDayMe = new int [7];
                             for (int i = 0; i < 7; i++) {
                                 LocalDate currentDay = firstDayofWeek.plusDays(i);
-                                weekDay[i] = response.getJSONObject(currentDay.toString()).getInt("metalTypeCount") +
-                                        response.getJSONObject(currentDay.toString()).getInt("glassTypeCount") +
-                                        response.getJSONObject(currentDay.toString()).getInt("paperTypeCount") +
-                                        response.getJSONObject(currentDay.toString()).getInt("plasticTypeCount");
+                                weekDayPl[i] = response.getJSONObject(currentDay.toString()).getInt("plasticTypeCount");
+                                weekDayGl[i] = response.getJSONObject(currentDay.toString()).getInt("glassTypeCount");
+                                weekDayPa[i] = response.getJSONObject(currentDay.toString()).getInt("paperTypeCount");
+                                weekDayMe[i] = response.getJSONObject(currentDay.toString()).getInt("metalTypeCount");
                             }
-                            monCount = weekDay[1];
-                            tueCount = weekDay[2];
-                            wedCount = weekDay[3];
-                            thuCount = weekDay[4];
-                            friCount = weekDay[5];
-                            satCount = weekDay[6];
-                            sunCount = weekDay[0];
 
-                            //Dear Tin, putting into SharedPreferences so that user can view stats without internet.
+                            monCountPl = weekDayPl[1];
+                            tueCountPl = weekDayPl[2];
+                            wedCountPl = weekDayPl[3];
+                            thuCountPl = weekDayPl[4];
+                            friCountPl = weekDayPl[5];
+                            satCountPl = weekDayPl[6];
+                            sunCountPl = weekDayPl[0];
 
-                            editor.putInt("monCount", monCount);
-                            editor.putInt("tueCount", tueCount);
-                            editor.putInt("wedCount", wedCount);
-                            editor.putInt("thuCount", thuCount);
-                            editor.putInt("friCount", friCount);
-                            editor.putInt("satCount", satCount);
-                            editor.putInt("sunCount", sunCount);
+                            monCountGl = weekDayGl[1];
+                            tueCountGl = weekDayGl[2];
+                            wedCountGl = weekDayGl[3];
+                            thuCountGl = weekDayGl[4];
+                            friCountGl = weekDayGl[5];
+                            satCountGl = weekDayGl[6];
+                            sunCountGl = weekDayGl[0];
+
+                            monCountMe = weekDayMe[1];
+                            tueCountMe = weekDayMe[2];
+                            wedCountMe = weekDayMe[3];
+                            thuCountMe = weekDayMe[4];
+                            friCountMe = weekDayMe[5];
+                            satCountMe = weekDayMe[6];
+                            sunCountMe = weekDayMe[0];
+
+                            monCountPa = weekDayPa[1];
+                            tueCountPa = weekDayPa[2];
+                            wedCountPa = weekDayPa[3];
+                            thuCountPa = weekDayPa[4];
+                            friCountPa = weekDayPa[5];
+                            satCountPa = weekDayPa[6];
+                            sunCountPa = weekDayPa[0];
+
+                            editor.putInt("monCountPl", monCountPl);
+                            editor.putInt("monCountPa", monCountPa);
+                            editor.putInt("monCountMe", monCountMe);
+                            editor.putInt("monCountGl", monCountGl);
+
+                            editor.putInt("tueCountPl", tueCountPl);
+                            editor.putInt("tueCountPa", tueCountPa);
+                            editor.putInt("tueCountMe", tueCountMe);
+                            editor.putInt("tueCountGl", tueCountGl);
+
+                            editor.putInt("wedCountPl", wedCountPl);
+                            editor.putInt("wedCountPa", wedCountPa);
+                            editor.putInt("wedCountMe", wedCountMe);
+                            editor.putInt("wedCountGl", wedCountGl);
+
+                            editor.putInt("thuCountPl", thuCountPl);
+                            editor.putInt("thuCountGl", thuCountGl);
+                            editor.putInt("thuCountPa", thuCountPa);
+                            editor.putInt("thuCountMe", thuCountMe);
+
+                            editor.putInt("friCountPl", friCountPl);
+                            editor.putInt("friCountPa", friCountPa);
+                            editor.putInt("friCountMe", friCountMe);
+                            editor.putInt("friCountGl", friCountGl);
+
+                            editor.putInt("satCountPl", satCountPl);
+                            editor.putInt("satCountMe", satCountMe);
+                            editor.putInt("satCountGl", satCountGl);
+                            editor.putInt("satCountPa", satCountPa);
+
+                            editor.putInt("sunCountPl", sunCountPl);
+                            editor.putInt("sunCountMe", sunCountMe);
+                            editor.putInt("sunCountGl", sunCountGl);
+                            editor.putInt("sunCountPa", sunCountPa);
+                                                    
                             editor.commit();
                             replaceFragment(new HomeDashboardFragment());
 
