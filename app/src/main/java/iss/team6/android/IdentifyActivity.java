@@ -139,30 +139,30 @@ public class IdentifyActivity extends AppCompatActivity {
             SharedPreferences pref = getSharedPreferences("trashTypeCount", Context.MODE_PRIVATE);
             if (className.toUpperCase().contains("GLASS")) {
                 glassCount = pref.getInt("glassCount", glassCount);
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putInt("glassCount", glassCount);
-                editor.apply();
+//                SharedPreferences.Editor editor = pref.edit();
+//                editor.putInt("glassCount", glassCount);
+//                editor.apply();
                 Toast.makeText(this, "Glass Count Updated", Toast.LENGTH_SHORT).show();
                 postDataUsingVolley("glass", points, "GLASS");
             } else if (className.toUpperCase().contains("METAL")) {
                 metalCount = pref.getInt("metalCount", metalCount);
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putInt("metalCount", metalCount);
-                editor.apply();
+//                SharedPreferences.Editor editor = pref.edit();
+//                editor.putInt("metalCount", metalCount);
+//                editor.apply();
                 Toast.makeText(this, "Metal Count Updated", Toast.LENGTH_SHORT).show();
                 postDataUsingVolley("metal", points, "METAL");
             } else if (className.toUpperCase().contains("PAPER") || className.toUpperCase().contains("CARDBOARD")) {
                 paperCount = pref.getInt("paperCount", paperCount);
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putInt("paperCount", paperCount);
-                editor.apply();
+//                SharedPreferences.Editor editor = pref.edit();
+//                editor.putInt("paperCount", paperCount);
+//                editor.apply();
                 Toast.makeText(this, "Paper Count Updated", Toast.LENGTH_SHORT).show();
                 postDataUsingVolley("paper", points, "PAPER");
             } else if (className.toUpperCase().contains("PLASTIC")) {
                 plasticCount = pref.getInt("plasticCount", plasticCount);
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putInt("plasticCount", plasticCount);
-                editor.apply();
+//                SharedPreferences.Editor editor = pref.edit();
+//                editor.putInt("plasticCount", plasticCount);
+//                editor.apply();
                 Toast.makeText(this, "Plastic Count Updated", Toast.LENGTH_SHORT).show();
                 postDataUsingVolley("plastic", points, "PLASTIC");
             } else {
